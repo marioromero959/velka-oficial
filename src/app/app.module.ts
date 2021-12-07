@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './footer/footer/footer.component';
 import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MaterialModule } from './material/material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

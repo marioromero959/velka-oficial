@@ -9,7 +9,6 @@ export class MailService {
 
   constructor(private _http:HttpClient) { }
 
-
   enviarMail(correo:any){
     return this._http.post(`${environment.API_URL}api/users`,{emailBody:correo});
   }

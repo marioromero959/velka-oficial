@@ -8,7 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [],
@@ -22,6 +23,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatListModule,
     MatCardModule,
     MatButtonToggleModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],exports:[
     MatButtonModule,
     LayoutModule,
@@ -31,6 +34,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatListModule,
     MatCardModule,
     MatButtonToggleModule,
+    MatInputModule,
+    MatFormFieldModule,
   ]
 })
 export class MaterialModule { }

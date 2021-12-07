@@ -15,7 +15,7 @@ export class ContactComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private _email: MailService
-  ) {
+    ) {
     this.contacto = this.formBuilder.group({
       nombre: ['',Validators.required],
       email: ['',[Validators.required,Validators.email]],
@@ -26,7 +26,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  get nombreCampo(){
+   get nombreCampo(){
     return this.contacto.get('nombre');
   }
   get emailCampo(){
@@ -52,5 +52,5 @@ export class ContactComponent implements OnInit {
     }else{
       this.contacto.markAllAsTouched();
     }
-  }
+  } 
 }
