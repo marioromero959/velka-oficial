@@ -1,1 +1,26 @@
-<p>contact works!</p>
+<div class="container" data-aos="zoom-in" data-aos-duration="2000">
+    <h1>Contacto</h1>
+    <h2 *ngIf="enviado">¡Gracias, tu email fue enviado con exito!</h2>
+    <form [formGroup]="contacto">
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Nombre y Apellido</mat-label>
+            <input matInput formControlName="nombre">
+            <mat-error *ngIf="nombreCampo?.hasError('required')">Debes ingresar tu nombre</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="jhondoe@mail.com">
+            <mat-error *ngIf="emailCampo?.invalid">{{errorEmail()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Telefono (opcional)</mat-label>
+            <input matInput formControlName="telefono" type="number" placeholder="(+54)1234567889 ">
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput formControlName="msg" placeholder="Escribe tu mensaje..."></textarea>
+            <mat-error *ngIf="msgCampo?.hasError('required')">Debes ingresar un mensaje</mat-error>
+          </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="enviar()">Enviar Mensaje</button>
+</div>
