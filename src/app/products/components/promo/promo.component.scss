@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 99%;
+    height: 90%;
+    align-items: center;
+}
+h2{
+    font-family: 'Bebas Neue';
+    margin: 20px;
+    font-size: 35px;
+}
+.swiper {
+    width: 90%;
+    height: 70%;
+}
+  .swiper-slide{
+      img{
+          width: 35%;
+      }
+    }
+    .card{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: space-evenly;
+    }
+    @media(max-width:800px){
+        .swiper {
+            width: 90%;
+            height: 90%;
+        }
+        .card{
+            flex-direction:column;
+        }img{
+            width: 80% !important;
+            height: 60%;
+        }
+        .swiper-pagination{
+            display: none;
+        }
+    }

@@ -58,3 +58,16 @@ $my-theme: mat-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Fuzzy Bubbles', 'cursive'; }
+
+//Paginacion y navigation swiper
+.swiper-pagination-bullet-active{
+  background-color: #000 !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #000 !important;
+    fill: black !important;
+    stroke: black !important;
+}

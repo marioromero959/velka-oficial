@@ -1,1 +1,24 @@
-<p>promo works!</p>
+<div class="container">
+    <h2>Conocé nuestras promociones</h2>
+    <div class="swiper" >
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let product of products">
+                <mat-card class="card" >
+                    <img mat-card-image [src]="product.img" alt="product.description">
+                    <mat-card-content>
+                        <p>{{product.nombre}}</p>
+                        <p>{{product.precio | currency}}</p>
+                        <p>{{product.description}}</p>
+                        <mat-card-actions>
+                            <button mat-raised-button>Consultar talles</button>
+                            <button mat-raised-button color=primary>Agregar al carrito</button>
+                        </mat-card-actions>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev swiper-button-black"></div>
+        <div class="swiper-button-next swiper-button-black"></div>
+    </div>
+</div>
