@@ -1,0 +1,16 @@
+
+<div class="container">
+    <mat-card class="card">
+        <img mat-card-image [src]="product.img" alt="product.description">
+        <mat-card-content>
+            <p>{{product.nombre}}</p>
+            <p>{{product.precio | currency}}</p>
+            <p>{{product.description}}</p>
+            <mat-card-actions>
+                <button mat-raised-button>Consultar talles</button>
+                <button mat-raised-button color=primary>Agregar al carrito</button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+    <button mat-raised-button [routerLink]="['/products']" color=warn>Volver</button>
+</div>

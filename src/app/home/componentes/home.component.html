@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="header">
-    <h1>Velka</h1>
-    <h2>Accesorios</h2>
-  </div>
+  <!-- <div class="header"> -->
+    <!-- <h1>Velka</h1> -->
+    <!-- <h2>Accesorios</h2> -->
+  <!-- </div> -->
 </div>
 <section>
   <mat-card class="card">
@@ -10,7 +10,7 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>@accesoriosvelka</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="../../../assets/img-velka/frase1.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="../../../assets/img-velka/frase1.jpg" alt="velka-accesorios">
     <mat-card-actions>
       <button mat-button>LIKE</button>
       <button mat-button>SHARE</button>
@@ -22,7 +22,7 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>@accesoriosvelka</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="../../../assets/img-velka/frase2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="../../../assets/img-velka/frase2.jpg" alt="velka-accesorios">
     <mat-card-actions>
       <button mat-button>LIKE</button>
       <button mat-button>SHARE</button>
@@ -30,22 +30,28 @@
   </mat-card>
 </section>
 
-<section class="promo">
-  <h3>Nosotrxs --></h3>
-  <mat-card>
-    <img mat-card-image src="../../../assets/banner2.png" alt="Photo of a Shiba Inu">
+<section class="promo" >
+  <h3>Nosotrxs <span>--></span></h3>
+  <mat-card matRipple
+  [matRippleCentered]="true"
+  [matRippleRadius]=650
+  [matRippleColor]="'white'">
+    <img mat-card-image src="../../../assets/banner.png" alt="velka-accesorios">
   </mat-card>
 </section>
 
 <section class="promo">
-  <h3> <-- Promociones</h3>
-  <mat-card>
-    <img mat-card-image src="../../../assets/banner1.png" alt="Photo of a Shiba Inu">
+  <h3> <span><--</span> Promociones</h3>
+  <mat-card matRipple
+  [matRippleCentered]="true"
+  [matRippleRadius]=650
+  [matRippleColor]="'white'">
+    <img mat-card-image src="../../../assets/banner1.png" alt="velka-accesorios">
   </mat-card>
 </section>
 
 <div class="container">
-  <a><img src="../../../assets/iglogo.png" alt=""></a>
+  <a><img src="../../../assets/iglogo.png" alt="logo-instagram-velka"></a>
   <p>Contactanos</p>
-  <a><img src="../../../assets/wpplogo.png" alt=""></a>
+  <a><img src="../../../assets/wpplogo.png" alt="logo-whatsapp-velka"></a>
 </div>

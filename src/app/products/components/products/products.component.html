@@ -1,15 +1,15 @@
 <h1>Productos</h1>
 <div class="toggle">
-    <mat-button-toggle-group aria-label="Font Style" [formControl]="fontStyleControl" (click)="filtro()">
+    <mat-button-toggle-group [formControl]="filterControl">
         <mat-button-toggle value="all">All</mat-button-toggle>
-        <mat-button-toggle value="tops">Tops</mat-button-toggle>
-        <mat-button-toggle value="monos">Monos</mat-button-toggle>
-        <mat-button-toggle value="blusas">Blusas</mat-button-toggle>
-        <mat-button-toggle value="accs">Acesorios</mat-button-toggle>
+        <mat-button-toggle value="top">Tops</mat-button-toggle>
+        <mat-button-toggle value="mono">Monos</mat-button-toggle>
+        <mat-button-toggle value="blusa">Blusas</mat-button-toggle>
+        <mat-button-toggle value="acc">Acesorios</mat-button-toggle>
       </mat-button-toggle-group>
 </div>
 <div class="container">
-    <mat-card class="card" *ngFor="let product of products">
+    <mat-card class="card" *ngFor="let product of products | productsFiltro:filterControl.value">
         <mat-card-header>
             <mat-card-title>{{product.nombre}}</mat-card-title>
         </mat-card-header>
@@ -20,8 +20,10 @@
             </p>
           </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button>Ver Detalle</button>
+            <button mat-raised-button [routerLink]="['/products',product.id]">Ver Detalle</button>
             <button mat-raised-button color=primary>Agregar al carrito</button>
         </mat-card-actions>
     </mat-card>
 </div>
+
+<!-- Programacion reactiva 49 -->
