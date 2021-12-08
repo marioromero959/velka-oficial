@@ -7,13 +7,15 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailComponent } from './components/detail/detail.component';
 import { ProductsPipe } from '../products.pipe';
+import { PromoComponent } from './components/promo/promo.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     DetailComponent,
-    ProductsPipe
+    ProductsPipe,
+    PromoComponent
   ],
   imports: [
     CommonModule,
