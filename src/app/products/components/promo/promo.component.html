@@ -11,7 +11,7 @@
                         <p>{{product.description}}</p>
                         <mat-card-actions>
                             <button mat-raised-button>Consultar talles</button>
-                            <button mat-raised-button color=primary>Agregar al carrito</button>
+                            <button mat-raised-button color=primary (click)="addCart(product)">Agregar al carrito</button>
                         </mat-card-actions>
                     </mat-card-content>
                 </mat-card>
@@ -21,4 +21,5 @@
         <div class="swiper-button-prev swiper-button-black"></div>
         <div class="swiper-button-next swiper-button-black"></div>
     </div>
+    <button mat-raised-button [routerLink]="['/products']" color=warn>Ver todos los productos</button>
 </div>

@@ -11,6 +11,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [],
@@ -27,6 +29,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatInputModule,
     MatFormFieldModule,
     MatRippleModule,
+    MatBadgeModule,
+    MatStepperModule,
   ],exports:[
     MatButtonModule,
     LayoutModule,
@@ -39,6 +43,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatInputModule,
     MatFormFieldModule,
     MatRippleModule,
+    MatBadgeModule,
+    MatStepperModule,
   ]
 })
 export class MaterialModule { }

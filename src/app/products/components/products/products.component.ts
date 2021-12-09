@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { product } from 'src/app/interface';
 import { FormControl } from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
+import { OrderService } from 'src/app/services/order.service';
 
 
 @Component({
@@ -15,9 +16,12 @@ export class ProductsComponent implements OnInit {
 
   products:product[] = []
 
-  constructor(private productSvc:ProductsService) { }
+  constructor(private productSvc:ProductsService,private orderSvc:OrderService) { }
 
   ngOnInit(){
     this.products = this.productSvc.getAllProducts() 
+  }
+  addCart(product:product){
+    this.orderSvc.addCart(product)
   }
 }

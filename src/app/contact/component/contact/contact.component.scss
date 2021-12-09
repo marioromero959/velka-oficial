@@ -1,10 +1,8 @@
 .contact{
     display: flex;
 }
-
-
 .container{
-    width: 100%;
+    width: 80%;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -21,7 +19,7 @@ h1{
 form{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
     align-items: center;
 }
 mat-form-field{
@@ -51,5 +49,8 @@ input[type=number] {
 @media(max-width:750px){
     .contact{
     flex-wrap: wrap;
+    }
+    .container{
+        width: 100%;
     }
 }

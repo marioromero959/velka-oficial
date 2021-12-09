@@ -21,7 +21,7 @@
           </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button [routerLink]="['/products',product.id]">Ver Detalle</button>
-            <button mat-raised-button color=primary>Agregar al carrito</button>
+            <button mat-raised-button color=primary (click)="addCart(product)">Agregar al carrito</button>
         </mat-card-actions>
     </mat-card>
 </div>

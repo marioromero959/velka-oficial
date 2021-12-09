@@ -24,8 +24,8 @@ export class ContactComponent implements OnInit {
     })
    }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
    get nombreCampo(){
     return this.contacto.get('nombre');
   }
