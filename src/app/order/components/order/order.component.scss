@@ -1,0 +1,66 @@
+mat-stepper{
+    width: 80%;
+    height: calc(100% - 45px);
+    margin: auto;
+}
+.card{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+img{
+    width: 200px;
+    border-radius: 5px;
+}
+p{
+    text-align: center;
+    margin: 15px;
+    line-height: 30px;
+    font-size: 20px;
+}
+mat-card > p:nth-child(2){
+    font-family: 'Bebas Neue';
+    font-size: 35px;
+}
+mat-card-actions{
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    mat-form-field{
+        margin: auto;
+        padding: 10px;
+        width: 80%;
+    }
+    mat-error{
+        font-size: 15px;
+    }
+}
+.step{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 5px;
+}
+@media(max-width:700px){
+    mat-stepper{
+        width: 100%;
+    }
+    p{
+        width: 100%;
+        margin: 0;
+    }
+    .card{
+        flex-wrap: wrap;
+    }
+    form{
+        justify-content: center;
+    }
+  form > mat-form-field{
+        width: 95%;
+    }
+}

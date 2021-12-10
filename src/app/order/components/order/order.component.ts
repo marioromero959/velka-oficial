@@ -11,23 +11,46 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class OrderComponent implements OnInit {
 
+  disableButton:boolean = false;
   products$:Observable<product[]>;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  isEditable = false;
+  dataClient: FormGroup;
 
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder) {
     this.products$ = this.orderSvc.cart$;
    }
 
    ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
+    this.dataClient = this._formBuilder.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', Validators.required],
+      direction: ['', Validators.required],
     });
   }
 
-
+  get nameField(){
+    return this.dataClient.get('name');
+  }
+  get emailField(){
+    return this.dataClient.get('email');
+  }
+  get surnameField(){
+    return this.dataClient.get('surname');
+  }
+  get phField(){
+    return this.dataClient.get('telefono');
+  }
+  get adressField(){
+    return this.dataClient.get('direction');
+  }
+  
+    errorEmail(){
+      if (this.emailField?.hasError('required')) {
+        return 'Debes escribir tu email';
+      }
+      return this.emailField?.hasError('email') ? 'No es un email válido' : '';
+    }
+    
+    paid(){}
 }

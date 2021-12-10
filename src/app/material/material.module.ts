@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -31,6 +32,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatRippleModule,
     MatBadgeModule,
     MatStepperModule,
+    MatMenuModule,
   ],exports:[
     MatButtonModule,
     LayoutModule,
@@ -45,6 +47,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatRippleModule,
     MatBadgeModule,
     MatStepperModule,
+    MatMenuModule,
   ]
 })
 export class MaterialModule { }

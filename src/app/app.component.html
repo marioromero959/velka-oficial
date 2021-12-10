@@ -10,6 +10,8 @@
         <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="drawer.toggle()">Home</a>
         <a mat-list-item routerLink="/products" routerLinkActive="active" (click)="drawer.toggle()">Productos</a>
         <a mat-list-item routerLink="/contact" routerLinkActive="active" (click)="drawer.toggle()">Contacto</a>
+        <button mat-raised-button (click)="goToOrder()" (click)="drawer.toggle()">Carrito<mat-icon [matBadge]="badge$ | async">shopping_cart</mat-icon></button>
+        <a mat-button routerLink="/order" routerLinkActive="active" (click)="drawer.toggle()">Carrito</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -27,7 +29,18 @@
         <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>
         <a mat-list-item routerLink="/products" routerLinkActive="active" >Productos</a>
         <a mat-list-item routerLink="/contact" routerLinkActive="active" >Contacto</a>
-        <a mat-button color="primary" routerLink="/order"><mat-icon [matBadge]="badge$ | async">shopping_cart</mat-icon></a>
+        <a mat-button color="primary" [matMenuTriggerFor]="menu"><mat-icon [matBadge]="badge$ | async">shopping_cart</mat-icon></a>
+        <mat-menu #menu>
+          <div *ngIf="(products$ | async) as products">
+            <a mat-menu-item *ngFor="let product of products;">{{product.nombre}}  {{product.precio | currency}}</a>
+          </div>
+          <a mat-menu-item>
+            <strong>Total: {{total() | currency}}</strong>
+          </a>
+          <a  mat-menu-item  routerLink="/order">
+            <mat-icon>shopping_cart</mat-icon>
+            Ver Carrito</a>
+        </mat-menu>
       </mat-toolbar>
      <router-outlet></router-outlet>
     </mat-sidenav-content>
