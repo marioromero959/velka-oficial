@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter,map,tap } from 'rxjs/operators';
 import { product } from 'src/app/interface';
 import { OrderService } from 'src/app/services/order.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { getMatFormFieldMissingControlError } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-order',
@@ -16,7 +17,8 @@ export class OrderComponent implements OnInit {
   products$:Observable<product[]>;
   products:product[];
   dataClient: FormGroup;
-
+  contador:number = 0;
+  
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder) {
     this.products$ = this.orderSvc.cart$;
   }
@@ -47,12 +49,18 @@ export class OrderComponent implements OnInit {
     return this.dataClient.get('direction');
   }
   
-  errorEmail(){
-    if (this.emailField?.hasError('required')) {
-      return 'Debes escribir tu email';
+    errorEmail(){
+      if (this.emailField?.hasError('required')) {
+        return 'Debes escribir tu email';
+      }
+      return this.emailField?.hasError('email') ? 'No es un email válido' : '';
     }
-    return this.emailField?.hasError('email') ? 'No es un email válido' : '';
-  }
     
+    addItem(id){
+      console.log(id)
+      this.contador++;
+    }
+
+
     paid(){}
 }

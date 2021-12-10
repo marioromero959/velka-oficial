@@ -1,19 +1,18 @@
 <mat-stepper linear #stepper>
-
-
     <mat-step>
         <ng-template matStepLabel>Sus productos</ng-template>
         <div *ngIf="(products$ | async) as products" class="container">
             <p *ngIf="products.length === 0">Aun no hay productos en tu carrito</p>
-              <mat-card class="card" *ngFor="let product of products">
+              <mat-card class="card" *ngFor="let product of products | order">
                 <img mat-card-image [src]="product.img" alt="product.description">
                 <p>{{product.nombre}}</p>
                 <mat-card-content>
-                    <p>{{product.precio | currency}}</p>
+                  <p>Cantidad:{{product.cantidad}}</p>
+                    <p>{{product.precio*product.cantidad | currency}}</p>
                     <p>{{product.description}}</p>
                     <mat-card-actions>
                         <button mat-raised-button>-</button>
-                        <button mat-raised-button color=primary>+</button>
+                        <button mat-raised-button color=primary (click)="addItem(product.id)">+</button>
                     </mat-card-actions>
                 </mat-card-content>
             </mat-card>

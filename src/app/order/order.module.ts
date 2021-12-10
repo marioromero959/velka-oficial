@@ -5,11 +5,13 @@ import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './components/order/order.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrderPipe } from './pipes/order.pipe';
 
 
 @NgModule({
   declarations: [
-    OrderComponent
+    OrderComponent,
+    OrderPipe
   ],
   imports: [
     CommonModule,

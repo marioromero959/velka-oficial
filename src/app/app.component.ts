@@ -20,7 +20,7 @@ export class AppComponent {
   );
     badge$:Observable<number>;
     products$:Observable<product[]>;
-    products:product[];
+    productos:any;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -31,9 +31,11 @@ export class AppComponent {
     )
     this.products$ = this.orderSvc.cart$
     this.products$.subscribe(products=>{
-      this.products = products;
+      this.productos = products;
     })
   }
+
+// Intentar hacer el uso de async y no susbcribe
 
   goToOrder(){
     this.router.navigate(['/order'])
@@ -41,7 +43,7 @@ export class AppComponent {
   
   public total() {
     let total = 0;
-    this.products.forEach(p => total += p.precio);
+    this.productos.forEach(p => total += p.precio);
     return total;
   }
 }
