@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { product } from 'src/app/interface';
 import { OrderService } from 'src/app/services/order.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -13,11 +14,12 @@ export class OrderComponent implements OnInit {
 
   disableButton:boolean = false;
   products$:Observable<product[]>;
+  products:product[];
   dataClient: FormGroup;
 
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder) {
     this.products$ = this.orderSvc.cart$;
-   }
+  }
 
    ngOnInit() {
     this.dataClient = this._formBuilder.group({
@@ -45,12 +47,12 @@ export class OrderComponent implements OnInit {
     return this.dataClient.get('direction');
   }
   
-    errorEmail(){
-      if (this.emailField?.hasError('required')) {
-        return 'Debes escribir tu email';
-      }
-      return this.emailField?.hasError('email') ? 'No es un email válido' : '';
+  errorEmail(){
+    if (this.emailField?.hasError('required')) {
+      return 'Debes escribir tu email';
     }
+    return this.emailField?.hasError('email') ? 'No es un email válido' : '';
+  }
     
     paid(){}
 }

@@ -4,7 +4,6 @@ import { FormControl } from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
 import { OrderService } from 'src/app/services/order.service';
 
-
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
