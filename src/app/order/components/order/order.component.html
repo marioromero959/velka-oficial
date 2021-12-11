@@ -11,11 +11,12 @@
                     <p>{{product.precio*product.cantidad | currency}}</p>
                     <p>{{product.description}}</p>
                     <mat-card-actions>
-                        <button mat-raised-button>-</button>
-                        <button mat-raised-button color=primary (click)="addItem(product.id)">+</button>
+                        <button mat-raised-button (click)="deleteItem(product)">-</button>
+                        <button mat-raised-button color=primary (click)="addCart(product)">+</button>
                     </mat-card-actions>
                 </mat-card-content>
             </mat-card>
+            <p *ngIf="products.length !== 0">Total:{{total() | currency}} </p>
         </div>
         <div class="step"><button mat-raised-button matStepperNext>Siguiente</button></div>
     </mat-step>

@@ -31,12 +31,7 @@
         <a mat-list-item routerLink="/contact" routerLinkActive="active" >Contacto</a>
         <a mat-button color="primary" [matMenuTriggerFor]="menu"><mat-icon [matBadge]="badge$ | async">shopping_cart</mat-icon></a>
         <mat-menu #menu>
-   <!--        <div *ngIf="(products$ | async) as products">
-            <a mat-menu-item *ngFor="let product of products;">{{product.nombre}}  {{product.precio | currency}}</a>
-          </div> -->
-          <a mat-menu-item>
-            <strong>Total: {{total() | currency}}</strong>
-          </a>
+          <a mat-menu-item><strong>Total: {{total() | currency}}</strong></a>
           <a  mat-menu-item  routerLink="/order">
             <mat-icon>shopping_cart</mat-icon>
             Ver Carrito</a>

@@ -35,8 +35,6 @@ export class AppComponent {
     })
   }
 
-// Intentar hacer el uso de async y no susbcribe
-
   goToOrder(){
     this.router.navigate(['/order'])
   }

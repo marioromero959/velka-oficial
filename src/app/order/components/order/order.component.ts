@@ -17,10 +17,12 @@ export class OrderComponent implements OnInit {
   products$:Observable<product[]>;
   products:product[];
   dataClient: FormGroup;
-  contador:number = 0;
-  
+
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder) {
     this.products$ = this.orderSvc.cart$;
+    this.products$.subscribe(products => {
+      this.products = products;
+    })
   }
 
    ngOnInit() {
@@ -56,11 +58,18 @@ export class OrderComponent implements OnInit {
       return this.emailField?.hasError('email') ? 'No es un email válido' : '';
     }
     
-    addItem(id){
-      console.log(id)
-      this.contador++;
+    addCart(product:product){
+      this.orderSvc.addCart(product)
     }
-
+    deleteItem(product){
+      this.orderSvc.deleteCart(product)
+    }
+    total(){
+      let total = this.products
+      .map(product=>product.precio)
+      .reduce((a,b)=>a+b,0)
+      return total
+    }
 
     paid(){}
 }
