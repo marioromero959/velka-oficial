@@ -4,7 +4,6 @@ import { filter,map,tap } from 'rxjs/operators';
 import { product } from 'src/app/interface';
 import { OrderService } from 'src/app/services/order.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { getMatFormFieldMissingControlError } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-order',
@@ -51,25 +50,25 @@ export class OrderComponent implements OnInit {
     return this.dataClient.get('direction');
   }
   
-    errorEmail(){
-      if (this.emailField?.hasError('required')) {
-        return 'Debes escribir tu email';
-      }
-      return this.emailField?.hasError('email') ? 'No es un email válido' : '';
+  errorEmail(){
+    if (this.emailField?.hasError('required')) {
+      return 'Debes escribir tu email';
     }
-    
-    addCart(product:product){
-      this.orderSvc.addCart(product)
-    }
-    deleteItem(product){
-      this.orderSvc.deleteCart(product)
-    }
-    total(){
-      let total = this.products
-      .map(product=>product.precio)
-      .reduce((a,b)=>a+b,0)
-      return total
-    }
+    return this.emailField?.hasError('email') ? 'No es un email válido' : '';
+  }
+  
+  addCart(product:product){
+    this.orderSvc.addCart(product)
+  }
+  deleteItem(product){
+    this.orderSvc.deleteCart(product)
+  }
+  total(){
+    let total = this.products
+    .map(product=>product.precio)
+    .reduce((a,b)=>a+b,0)
+    return total
+  }
 
     paid(){}
 }
