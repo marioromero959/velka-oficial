@@ -15,12 +15,13 @@ export class OrderService {
   constructor() { }
 
   addCart(product:product){
-    // this.products = [...this.products,product]
-    this.products.push(product)
+    this.products = [...this.products,product]
     this.cart.next(this.products)
   }
-  deleteCart(product:product){
-    this.products.splice(0,1)
+  deleteCart(id:number){
+    this.products = [...this.products]
+    const index = this.products.findIndex(obj => obj.id === id)
+    this.products.splice(index, 1);
     this.cart.next(this.products)
   }
 

@@ -19,7 +19,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{
-      const id = params.id;
+      const id = parseInt(params.id);
       this.product = this.productSvc.getProduct(id);
     });
   }
