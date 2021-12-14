@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { OrderService } from './services/order.service';
 import { Router } from '@angular/router';
-import { product } from './interface';
+import { product } from './shared/interface';
 
 @Component({
   selector: 'app-root',

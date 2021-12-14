@@ -6,7 +6,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailComponent } from './components/detail/detail.component';
-import { ProductsPipe } from '../products.pipe';
+import { ProductsPipe } from './pipes/products.pipe';
 import { PromoComponent } from './components/promo/promo.component';
 
 

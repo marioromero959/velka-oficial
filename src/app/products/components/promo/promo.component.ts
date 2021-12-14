@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { product } from 'src/app/interface';
+import { product } from '../../../shared/interface';
 import { OrderService } from 'src/app/services/order.service';
 import { ProductsService } from 'src/app/services/products.service';
 import Swiper, { Navigation, Pagination,Autoplay } from 'swiper';

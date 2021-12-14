@@ -14,6 +14,10 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -33,6 +37,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatBadgeModule,
     MatStepperModule,
     MatMenuModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatGridListModule,
+    MatSortModule,
   ],exports:[
     MatButtonModule,
     LayoutModule,
@@ -48,6 +56,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatBadgeModule,
     MatStepperModule,
     MatMenuModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatGridListModule,
+    MatSortModule,
   ]
 })
 export class MaterialModule { }

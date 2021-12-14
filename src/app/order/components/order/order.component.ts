@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { filter,map,tap } from 'rxjs/operators';
-import { product } from 'src/app/interface';
+import { product } from '../../../shared/interface';
 import { OrderService } from 'src/app/services/order.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -16,6 +15,7 @@ export class OrderComponent implements OnInit {
   products$:Observable<product[]>;
   products:product[];
   dataClient: FormGroup;
+  emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
 
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder) {
     this.products$ = this.orderSvc.cart$;
@@ -28,7 +28,7 @@ export class OrderComponent implements OnInit {
     this.dataClient = this._formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       telefono: ['', Validators.required],
       direction: ['', Validators.required],
     });
@@ -54,7 +54,7 @@ export class OrderComponent implements OnInit {
     if (this.emailField?.hasError('required')) {
       return 'Debes escribir tu email';
     }
-    return this.emailField?.hasError('email') ? 'No es un email válido' : '';
+    return this.emailField?.hasError('pattern') ? 'No es un email válido' : '';
   }
   
   addCart(product:product){

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { product } from 'src/app/interface';
+import { product } from '../../shared/interface';
 
 @Pipe({
   name: 'order'
@@ -7,7 +7,6 @@ import { product } from 'src/app/interface';
 export class OrderPipe implements PipeTransform {
 
   transform(value: product[], ...args: unknown[]):any{
-    console.log('desde pipe',value)
     const show:product[] = []
     const filtrado = value.forEach(item =>{
       if(!show.includes(item)){
