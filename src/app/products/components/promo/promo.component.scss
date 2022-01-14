@@ -30,13 +30,17 @@ h2{
 button{
     margin: 15px;
 }
-    @media(max-width:800px){
+    @media(max-width:480px){
+        h2{
+            font-size: 25px;
+        }
         .swiper {
             width: 90%;
-            height: 90%;
+            height: 100%;
         }
         .card{
             flex-direction:column;
+            height:-webkit-fill-available;
         }img{
             width: 80% !important;
             height: 60%;
