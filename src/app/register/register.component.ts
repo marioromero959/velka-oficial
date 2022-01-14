@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login/login.service';
+import { RegisterService } from 'src/app/services/register/register.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,20 +13,21 @@ import { ModalComponent } from 'src/app/modalError/modal/modal.component';
 })
 export class RegisterComponent implements OnInit {
 
-  login:FormGroup;
-  token;
+  register:FormGroup;
   icon = 'visibility'
   showPassword = false;
 
   constructor(
-      private loginSvc:LoginService,
+      private registerSvc:RegisterService,
       private formBuilder: FormBuilder, 
       private router:Router, 
       public dialog:MatDialog,
       ) { 
-      this.login = this.formBuilder.group({
+      this.register = this.formBuilder.group({
+        nombre: ['',Validators.required],
         correo: ['',[Validators.required,Validators.email]],
-        contraseña: ['',Validators.required],
+        contraseña: ['',[Validators.required, Validators.minLength(6)]],
+        rol: ['USER_ROLE'],
       })
   }
 
@@ -42,11 +43,14 @@ export class RegisterComponent implements OnInit {
   }
 
   //Getters
+  get nameField(){
+    return this.register.get('nombre');
+  }
   get emailField(){
-    return this.login.get('correo');
+    return this.register.get('correo');
   }
   get passField(){
-    return this.login.get('contraseña');
+    return this.register.get('contraseña');
   }
 
   //Errors Fields
@@ -57,24 +61,22 @@ export class RegisterComponent implements OnInit {
     return this.emailField?.hasError('email') ? 'No es un email válido' : '';
   } 
 
-  goToHome(){
-    if(this.login.invalid){
-      this.login.markAllAsTouched();
+  toRegister(){
+    if(this.register.invalid){
+      this.register.markAllAsTouched();
     }else{
-      this.loginSvc.login(this.login.value).subscribe(
+      this.registerSvc.register(this.register.value).subscribe(
         res=>{
-          this.token = res;
-          localStorage.setItem('token',this.token)
-          this.router.navigate(['/home'])
+          this.router.navigate(['/login'])
         },
         err=>{
             const dialogRef = this.dialog.open(ModalComponent,{
               disableClose:false,
-              data:err
+              data:err.error.errors[0].msg
             });
           }
       )  
-    }
+    } 
   }
 
   goToLogin(){

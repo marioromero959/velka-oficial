@@ -34,11 +34,11 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass:InterceptorInterceptor,
-    multi: true,
-  }],
+  // providers: [{
+    // provide: HTTP_INTERCEPTORS,
+    // useClass:InterceptorInterceptor,
+    // multi: true,
+  // }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

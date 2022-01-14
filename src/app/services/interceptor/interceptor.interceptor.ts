@@ -24,6 +24,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
   }
 
   manejarError(error:HttpErrorResponse){
+    // console.log(error.error.errors[0].msg);
     return throwError(error.error.msg);
   }
 }

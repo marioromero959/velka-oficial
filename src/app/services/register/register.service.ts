@@ -6,12 +6,13 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class RegisterService {
 
   constructor(private http:HttpClient) { }
 
-  login(data){
-    return this.http.post(`${environment.API}/api/auth/login`,data)
-      .pipe(map(res=>res['token']));
+  register(data){
+    return this.http.post(`${environment.API}/api/users`,data)
   }
 }
+
+

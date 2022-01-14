@@ -1,7 +1,12 @@
 <div class="contact">
     <div class="container">
         <h1>Registrate</h1>
-        <form [formGroup]="login">
+        <form [formGroup]="register">
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+                <mat-error *ngIf="nameField?.hasError('required')">Debes ingresar tu nombre</mat-error>
+            </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="correo" placeholder="jhondoe@mail.com">
@@ -12,11 +17,12 @@
                 <input matInput formControlName="contraseña" [type]="showPassword ? 'text' : 'password'">
                 <mat-icon matSuffix (click)="showPass()">{{icon}}</mat-icon>
                 <mat-error *ngIf="passField?.hasError('required')">Debes ingresar la contraseña</mat-error>
+                <mat-error *ngIf="passField?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres</mat-error>
             </mat-form-field>
         </form>
         <div class="buttons">
-            <button mat-raised-button color="primary" (click)="goToHome()">Ingresar</button>
             <button mat-raised-button color="accent" (click)="goToLogin()">Volver</button>
+            <button mat-raised-button color="primary" (click)="toRegister()">Registrarme</button>
         </div>
         </div>
     </div>
