@@ -1,6 +1,6 @@
 .contact{
     display: flex;
-    background: url('../../../../assets/bg-login.jpg');
+    background: url('../../assets/bg-registro.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -20,7 +20,7 @@ h1{
     text-align: center;
     padding: 20px;    
     font-family: 'Bebas Neue';
-    background-color:rgba(255,255,255, .4);
+    background-color:rgba(255,255,255, .7);
     border-radius: 15px;
 }
 span{
@@ -33,9 +33,9 @@ form{
     align-items: center;
 }
 mat-form-field{
-    background-color:rgba(255,255,255, .5);;
+    background-color:rgba(255,255,255, .7);;
     margin: 15px;
-    padding: 5px;
+    padding: 8px;
     width: 90%;
     border-radius: 15px;
 }
@@ -46,7 +46,15 @@ mat-error{
     font-size: 14px;
     margin-left: 10px;
 }
-
+.buttons{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    button{
+        margin: 5px;
+    }
+}
 @media(max-width:750px){
     .contact{
     flex-wrap: wrap;
@@ -59,5 +67,8 @@ mat-error{
     }
     form{
         width: 90%;
+    }
+    .buttons{
+        flex-direction: column;
     }
 }
