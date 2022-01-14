@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { product } from '../shared/interface';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -94,13 +96,20 @@ export class ProductsService {
 
   ]
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
+  //TODO:borrar
   getAllProducts(){
     return this.products;
   }
-
   getProduct(id:number){
     return this.products.find(item => id === item.id)
+  }
+
+  getAllProductsapi(){
+    return this.http.get(`${environment.API}/api/productos`);
+  }
+  getProductapi(id){
+    return this.http.get(`${environment.API}/api/productos/${id}`);
   }
 }

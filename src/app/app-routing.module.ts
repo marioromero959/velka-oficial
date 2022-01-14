@@ -1,31 +1,43 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/components/login/login.component';
+import { LayoutComponent } from './layout/layout/layout.component';
 
 const routes: Routes = [
-  {
+    {
     path: '',
-    redirectTo: '/home',
-    pathMatch:'full'
+    component: LayoutComponent,
+    children:[
+    {
+      path: '',
+      pathMatch:'full',
+      redirectTo: '/home',
+    },
+    {
+      path: 'home',
+      loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    },
+    {
+      path: 'products',
+      loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
+    },
+    {
+      path: 'contact',
+      loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+    },
+    {
+      path: 'about',
+      loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
+    },
+    {
+      path: 'order',
+      loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
+    },
+  ]
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
-  },
-  {
-    path: 'products',
-    loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
-  },
-  {
-    path: 'contact',
-    loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
-  },
-  {
-    path: 'about',
-    loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
-  },
-  {
-    path: 'order',
-    loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
+    path: 'login',
+    component:LoginComponent
   },
   {
     path: 'admin',

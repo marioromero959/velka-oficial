@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 import { product } from '../../../shared/interface';
-import { OrderService } from 'src/app/services/order.service';
+import { OrderService } from 'src/app/services/order/order.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -21,6 +21,12 @@ export class DetailComponent implements OnInit {
     this.route.params.subscribe((params:Params)=>{
       const id = parseInt(params.id);
       this.product = this.productSvc.getProduct(id);
+
+      //TODO: Obtener id de mongo
+      const nuevoid = '61bce94c339ab68aa6b34c03';
+      this.productSvc.getProductapi(nuevoid).subscribe(res=>{
+        console.log(res)
+      })
     });
   }
   addCart(product:product){

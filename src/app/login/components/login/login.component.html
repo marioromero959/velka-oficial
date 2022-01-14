@@ -1,0 +1,17 @@
+<div class="contact">
+<div class="container">
+    <h1><span>Bienvenido a </span>velka</h1>
+    <form [formGroup]="login">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="jhondoe@mail.com">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="password">
+            <!-- <mat-error *ngIf="nombreCampo?.hasError('required')">Debes ingresar tu nombre</mat-error> -->
+        </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="goToHome()">Ingresar</button>
+</div>
+</div>

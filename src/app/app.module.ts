@@ -4,15 +4,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FooterComponent } from './footer/footer/footer.component';
+import { FooterComponent } from './footer/components/footer.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { LoginComponent } from './login/components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutComponent } from './layout/layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     LayoutModule,
     MaterialModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
