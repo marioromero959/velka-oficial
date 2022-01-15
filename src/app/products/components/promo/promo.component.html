@@ -10,7 +10,7 @@
                         <p>{{product.precio | currency}}</p>
                         <p>{{product.description}}</p>
                         <mat-card-actions>
-                            <button mat-raised-button>Consultar talles</button>
+                            <button mat-raised-button [routerLink]="['/products',product.id]">Ver detalle</button>
                             <button mat-raised-button color=primary (click)="addCart(product)">Agregar al carrito</button>
                         </mat-card-actions>
                     </mat-card-content>

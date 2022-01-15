@@ -1,10 +1,10 @@
 .contact{
     display: flex;
-    background: url('../../assets/bg-registro.jpg');
+    background: url('../../../assets/bg-login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height:100%;
+    height:calc(100% - 40px);
 }
 .container{
     width: 100%;
@@ -20,7 +20,7 @@ h1{
     text-align: center;
     padding: 20px;    
     font-family: 'Bebas Neue';
-    background-color:rgba(255,255,255, .7);
+    background-color:rgba(255,255,255, .4);
     border-radius: 15px;
 }
 span{

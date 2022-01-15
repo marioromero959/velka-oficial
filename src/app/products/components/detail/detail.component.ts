@@ -25,7 +25,7 @@ export class DetailComponent implements OnInit {
       //TODO: Obtener id de mongo
       const nuevoid = '61bce94c339ab68aa6b34c03';
       this.productSvc.getProductapi(nuevoid).subscribe(res=>{
-        console.log(res)
+        // console.log(res)
       })
     });
   }

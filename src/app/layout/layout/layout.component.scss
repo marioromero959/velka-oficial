@@ -22,6 +22,9 @@
 .spacer{
   flex: 1 1 auto;
 }
+.spacer2{
+  flex: .5 1 auto;
+}
 mat-toolbar{
   height: 40px;
   border-bottom: 1px solid #000;
@@ -31,16 +34,35 @@ span,mat-icon{
 }
 mat-toolbar a{
   color: #000;
-  padding: 5px 10px;
+  padding: 0px 20px;
   font-size: 15px;
-  margin: 0 30px;
+  margin: 0 10px;
   text-decoration: none;
+  transition: .5s;
+  img{
+    width: 35%;
+    margin-top: 10px;
+  }
 }
 a.active{
   color: #fff !important;
-  background-color: #000;
+  background-color: var(--primary);
 }
-
+a:hover{
+  color: #fff !important;
+  background-color: var(--primary);
+}
+a:nth-child(1){
+  color: #000 !important;
+  background-color:transparent;
+}
+.buttons{
+  display: flex;
+  margin-top: 30px;
+}
+mat-nav-list button{
+  margin-left: 10px;
+}
 @media(max-width:480px){
   .sidenav,button{
     display: block;

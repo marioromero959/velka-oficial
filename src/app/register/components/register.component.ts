@@ -83,11 +83,3 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/login'])
   }
 }
-
-/* {
-    "nombre":"mario",
-    "correo":"test4@gmail.com",
-    "contraseña":"123456",
-    "rol":"USER_ROLE"
-}
- */

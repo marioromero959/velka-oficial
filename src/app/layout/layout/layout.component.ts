@@ -22,7 +22,8 @@ export class LayoutComponent implements OnInit {
     products$:Observable<product[]>;
     productos:any;
     token = false;
-
+    session:string = 'Iniciar'
+    
   constructor(
     private breakpointObserver: BreakpointObserver,
     private orderSvc:OrderService,
@@ -47,4 +48,14 @@ export class LayoutComponent implements OnInit {
     this.productos.forEach(p => total += p.precio);
     return total;
   }
+
+
+  goToLogin(){
+    this.router.navigate(['/login'])
+  }
+
+  goToRegister(){
+    this.router.navigate(['/register'])
+  }
+
 }

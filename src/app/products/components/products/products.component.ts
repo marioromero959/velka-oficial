@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
     //TODO: Aplicar carga de productos
     this.productSvc.getAllProductsapi().subscribe((res:any)=>{
      this.productos = res.productos;
-     console.log(this.productos);
+    //  console.log(this.productos);
     }) 
   }
 

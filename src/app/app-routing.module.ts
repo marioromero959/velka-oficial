@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login/components/login.component';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './register/components/register.component';
 
 const routes: Routes = [
     {
@@ -17,6 +17,14 @@ const routes: Routes = [
     {
       path: 'home',
       loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    },
+    {
+      path: 'login',
+      loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    },
+    {
+      path: 'register',
+      loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
     },
     {
       path: 'products',
@@ -35,14 +43,6 @@ const routes: Routes = [
       loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
     },
   ]
-  },
-  {
-    path: 'login',
-    component:LoginComponent
-  },
-  {
-    path: 'register',
-    component:RegisterComponent
   },
   {
     path: 'admin',
