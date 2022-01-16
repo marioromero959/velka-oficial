@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { product } from '../../../shared/interface';
 import { FormControl } from '@angular/forms';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from '../../services/products.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
