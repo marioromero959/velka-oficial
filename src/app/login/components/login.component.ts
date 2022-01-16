@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
         res=>{
           this.token = res;
           localStorage.setItem('token',this.token)
+          this.loginSvc.getUserLogged(true);
           this.router.navigate(['/home'])
         },
         err=>{

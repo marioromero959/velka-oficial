@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { OrderService } from './../../services/order/order.service';
 import { Router } from '@angular/router';
 import { product } from './../../shared/interface';
+import { OrderService } from './../../services/order/order.service';
+import { LoginService } from 'src/app/services/login/login.service';
  
 @Component({
   selector: 'app-layout',
@@ -21,13 +22,15 @@ export class LayoutComponent implements OnInit {
     badge$:Observable<number>;
     products$:Observable<product[]>;
     productos:any;
-    token = false;
+    token:string;
     session:string = 'Iniciar'
     
   constructor(
     private breakpointObserver: BreakpointObserver,
     private orderSvc:OrderService,
-    private router:Router){
+    private router:Router,
+    private loginSvc:LoginService
+    ){
     this.badge$ = this.orderSvc.cart$.pipe(
       map(result => result.length)
     )
@@ -35,6 +38,12 @@ export class LayoutComponent implements OnInit {
     this.products$.subscribe(products=>{
       this.productos = products;
     })
+    this.token = localStorage.getItem('token');
+    this.loginSvc.user$.subscribe(res=>{
+      if(res  || this.token){
+        this.session = 'Cerrar'
+      }
+    }) 
   }
 
   ngOnInit() {}
@@ -56,6 +65,13 @@ export class LayoutComponent implements OnInit {
 
   goToRegister(){
     this.router.navigate(['/register'])
+  }
+
+  outSession(){
+    if(this.session === 'Cerrar'){
+      localStorage.removeItem('token')
+      this.session = 'Iniciar'
+    }
   }
 
 }

@@ -34,16 +34,15 @@
         <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>
         <a mat-list-item routerLink="/products" routerLinkActive="active" >Productos</a>
         <a mat-list-item routerLink="/contact" routerLinkActive="active" >Contacto</a>
-        <a mat-button color="primary" [matMenuTriggerFor]="menu"><mat-icon [matBadge]="badge$ | async">shopping_cart</mat-icon>*   Carrito</a>
+        <a mat-button color="primary" [matMenuTriggerFor]="menu"><mat-icon [matBadge]="badge$ | async">shopping_cart</mat-icon></a>
         <mat-menu #menu>
-          <a mat-menu-item><strong>Total: {{total() | currency}}</strong></a>
-          <a  mat-menu-item  routerLink="/order">
-            <mat-icon>shopping_cart</mat-icon>
-            Ver Carrito</a>
+          <p mat-menu-item><strong>Total: {{total() | currency}}</strong></p>
+          <p  mat-menu-item  routerLink="/order">
+            <mat-icon>shopping_cart</mat-icon>Ver Carrito</p>
         </mat-menu>
-        <span class="spacer2"></span>
-        <a mat-list-item routerLink="/login" routerLinkActive="active">{{session}} Sesión</a>
-        <a mat-list-item routerLink="/register" routerLinkActive="active">Registrate</a>
+        <span class="spacer"></span>
+        <a mat-list-item routerLink="/login" (click)="outSession()" routerLinkActive="active">{{session}} Sesión</a>
+        <a mat-list-item routerLink="/register" routerLinkActive="active" *ngIf="session === 'Iniciar'">Registrate</a>
       </mat-toolbar>
      <router-outlet></router-outlet>
     </mat-sidenav-content>
