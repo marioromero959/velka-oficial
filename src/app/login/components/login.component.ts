@@ -69,12 +69,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home'])
         },
         err=>{
-          console.log(err);
-/*           
+          console.log(err);/* 
             const dialogRef = this.dialog.open(ModalComponent,{
               disableClose:false,
               data:err.error.msg
-            }); */
+            });  */
           }
       )  
     }

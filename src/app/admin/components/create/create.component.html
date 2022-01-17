@@ -4,22 +4,37 @@
     <mat-form-field appearance="fill">
         <mat-label>Nombre del producto</mat-label>
         <input matInput formControlName="nombre">
-        <!-- <mat-error *ngIf="nombreCampo?.hasError('required')">Debes ingresar tu nombre</mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Categoría</mat-label>
+        <mat-select matInput formControlName="categoria">
+       <mat-option *ngFor="let category of categorias" [value]="category._id">
+                {{category.nombre}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Precio</mat-label>
-        <input matInput formControlName="precio">
-        <!-- <mat-error *ngIf="emailCampo?.invalid">{{errorEmail()}}</mat-error> -->
+        <input matInput formControlName="precio" type="number">
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <div class="imagen">
         <mat-label>Imagen</mat-label>
-        <input matInput formControlName="img">
-    </mat-form-field>
+        <input formControlName="img" type="file">
+    </div>
     <mat-form-field appearance="fill">
         <mat-label>Descripcion</mat-label>
         <input matInput formControlName="desc">
-        <!-- <mat-error *ngIf="msgCampo?.hasError('required')">Debes ingresar un mensaje</mat-error> -->
       </mat-form-field>
     </form>
-    <button mat-button (click)="crearProducto()">Crear</button>
+    <button mat-button (click)="crearProducto()" color="primary">Crear</button>
+
+
+    <h1>Crear Nueva Categoria</h1>
+    <form>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre de la Categoría</mat-label>
+            <input matInput [formControl]="categoria">
+        </mat-form-field>
+    </form>
+    <button mat-button (click)="crearCategoria()">Crear</button>
 </div>
