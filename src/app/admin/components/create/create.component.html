@@ -4,12 +4,10 @@
     <mat-form-field appearance="fill">
         <mat-label>Nombre del producto</mat-label>
         <input matInput formControlName="nombre">
-        <!-- <mat-error *ngIf="nombreCampo?.hasError('required')">Debes ingresar tu nombre</mat-error> -->
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Precio</mat-label>
         <input matInput formControlName="precio">
-        <!-- <mat-error *ngIf="emailCampo?.invalid">{{errorEmail()}}</mat-error> -->
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Imagen</mat-label>
@@ -18,8 +16,11 @@
     <mat-form-field appearance="fill">
         <mat-label>Descripcion</mat-label>
         <input matInput formControlName="desc">
-        <!-- <mat-error *ngIf="msgCampo?.hasError('required')">Debes ingresar un mensaje</mat-error> -->
       </mat-form-field>
     </form>
     <button mat-button (click)="crearProducto()">Crear</button>
+
+
+    <h1>Crear Nueva Categoria</h1>
+    <button mat-button (click)="crearCategoria()">Crear</button>
 </div>

@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
         err=>{
             const dialogRef = this.dialog.open(ModalComponent,{
               disableClose:false,
-              data:err.error.msg
+              data:err
             });
           }
       )  

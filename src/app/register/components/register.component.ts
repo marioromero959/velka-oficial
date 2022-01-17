@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
         err=>{
             const dialogRef = this.dialog.open(ModalComponent,{
               disableClose:false,
-              data:err.error.errors[0].msg
+              data:err
             });
           }
       )  

@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
     map(result => result.matches),
-    shareReplay()
+    shareReplay(850)
   );
     badge$:Observable<number>;
     products$:Observable<product[]>;
@@ -56,11 +56,6 @@ export class LayoutComponent implements OnInit {
     let total = 0;
     this.productos.forEach(p => total += p.precio);
     return total;
-  }
-
-
-  goToLogin(){
-    this.router.navigate(['/login'])
   }
 
   goToRegister(){

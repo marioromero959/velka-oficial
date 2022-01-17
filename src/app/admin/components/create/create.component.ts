@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-create',
@@ -12,6 +13,7 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private adminSvc:AdminService
   ) { 
     this.formularioProducto = this.formBuilder.group({
       nombre: ['',Validators.required],
@@ -29,8 +31,14 @@ export class CreateComponent implements OnInit {
       this.formularioProducto.markAllAsTouched()
     }
     console.log('creado');
-    
   }
-
+  crearCategoria(category = {nombre: 'blazers'}){
+    this.adminSvc.addCategory(category).subscribe(res=>{
+      console.log(res);
+    },
+    err =>{
+      console.log(err);
+    })
+  }
 
 }
