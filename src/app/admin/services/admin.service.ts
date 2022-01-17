@@ -9,12 +9,20 @@ export class AdminService {
 
   constructor(private http:HttpClient) { }
   
+  getCategories(){
+    return this.http.get(`${environment.API}/api/categorias`)
+  }
+
   addCategory(category){
     return this.http.post(`${environment.API}/api/categorias`,category)
   }
 
   editCategory(){}
-  addProduct(){}
+
+  addProduct(product){
+    return this.http.post(`${environment.API}/api/productos`,product)
+  }
+  
   editProduct(){}
   deleteCategory(){}
   deleteProduct(){}

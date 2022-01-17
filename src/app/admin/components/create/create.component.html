@@ -6,19 +6,27 @@
         <input matInput formControlName="nombre">
     </mat-form-field>
     <mat-form-field appearance="fill">
-        <mat-label>Precio</mat-label>
-        <input matInput formControlName="precio">
+        <mat-label>Categoría</mat-label>
+        <mat-select matInput formControlName="categoria">
+       <mat-option *ngFor="let category of categorias" [value]="category._id">
+                {{category.nombre}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
-        <mat-label>Imagen</mat-label>
-        <input matInput formControlName="img">
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="precio" type="number">
     </mat-form-field>
+    <div class="imagen">
+        <mat-label>Imagen</mat-label>
+        <input formControlName="img" type="file">
+    </div>
     <mat-form-field appearance="fill">
         <mat-label>Descripcion</mat-label>
         <input matInput formControlName="desc">
       </mat-form-field>
     </form>
-    <button mat-button (click)="crearProducto()">Crear</button>
+    <button mat-button (click)="crearProducto()" color="primary">Crear</button>
 
 
     <h1>Crear Nueva Categoria</h1>

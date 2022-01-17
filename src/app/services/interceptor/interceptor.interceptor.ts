@@ -28,7 +28,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
       headers:headers
     });
 
-    return next.handle(reqClone).pipe(
+    return next.handle(reqClone)/* .pipe(
       catchError((err)=>{
         if(this.router.url == '/register'){
           return throwError(err.error.errors[0].msg);
@@ -39,6 +39,6 @@ export class InterceptorInterceptor implements HttpInterceptor {
         //TODO: Dejar solo una
         return throwError(err.error.msg); 
       })
-    );
+    ); */
   }
 }

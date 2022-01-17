@@ -13,6 +13,7 @@ export class CreateComponent implements OnInit {
 
   formularioProducto:FormGroup;
   categoria = new FormControl('',[Validators.required])
+  categorias = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,6 +22,7 @@ export class CreateComponent implements OnInit {
   ) { 
     this.formularioProducto = this.formBuilder.group({
       nombre: ['',Validators.required],
+      categoria: ['',Validators.required],
       precio: ['',Validators.required],
       img: ['',Validators.required],
       desc: ['',Validators.required],
@@ -28,13 +30,28 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllcategories()
+  }
+
+  getAllcategories(){
+    this.adminSvc.getCategories().subscribe((res) =>{
+      this.categorias = res['categorias'];
+      console.log(this.categorias);
+    });
   }
 
   crearProducto(){
     if(this.formularioProducto.invalid){
       this.formularioProducto.markAllAsTouched()
+    }else{
+      const { categoria, nombre } = this.formularioProducto.value
+      const product = {nombre, categoria}
+
+      this.adminSvc.addProduct(product).subscribe(
+        res =>console.log(res),
+        err =>console.log(err)
+      )
     }
-    console.log('creado');
   }
 
   crearCategoria(){
