@@ -70,10 +70,11 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/login'])
         },
         err=>{
-            const dialogRef = this.dialog.open(ModalComponent,{
+          console.log(err);
+/*             const dialogRef = this.dialog.open(ModalComponent,{
               disableClose:false,
               data:err.error.errors[0].msg
-            });
+            }); */
           }
       )  
     } 

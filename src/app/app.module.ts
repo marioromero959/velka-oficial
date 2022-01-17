@@ -29,11 +29,11 @@ import { ModalComponent } from './modalError/modal/modal.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  // providers: [{
-    // provide: HTTP_INTERCEPTORS,
-    // useClass:InterceptorInterceptor,
-    // multi: true,
-  // }],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass:InterceptorInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

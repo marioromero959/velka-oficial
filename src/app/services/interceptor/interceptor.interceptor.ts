@@ -4,27 +4,43 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpHeaders
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import {Router,ActivatedRoute} from '@angular/router'
 
 @Injectable({providedIn:'root'})
 export class InterceptorInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private router:Router,private route:ActivatedRoute) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    const reqClone = req.clone();
+    let token = localStorage.getItem('token');
+    console.log(token);
+    
+    let headers = new HttpHeaders({
+      'x-token': token
+    });
+
+    const reqClone = req.clone({
+      headers:headers
+    });
 
     return next.handle(reqClone).pipe(
-      catchError(this.manejarError)
+      // catchError(this.manejarError)
+      catchError((err)=>{
+        console.log(err);
+        if(this.router.url == '/register'){
+          return throwError(err.error.errors[0].msg);
+        }
+        if(this.router.url == '/login'){
+          return throwError(err.error.msg); 
+        }
+        return throwError(err); 
+      })
     );
-  }
-
-  manejarError(error:HttpErrorResponse){
-    // console.log(error.error.errors[0].msg);
-    return throwError(error.error.msg);
   }
 }
