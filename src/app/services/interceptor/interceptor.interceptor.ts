@@ -19,7 +19,6 @@ export class InterceptorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     let token = localStorage.getItem('token');
-    console.log(token);
     
     let headers = new HttpHeaders({
       'x-token': token
@@ -30,16 +29,15 @@ export class InterceptorInterceptor implements HttpInterceptor {
     });
 
     return next.handle(reqClone).pipe(
-      // catchError(this.manejarError)
       catchError((err)=>{
-        console.log(err);
         if(this.router.url == '/register'){
           return throwError(err.error.errors[0].msg);
         }
         if(this.router.url == '/login'){
           return throwError(err.error.msg); 
         }
-        return throwError(err); 
+        //TODO: Dejar solo una
+        return throwError(err.error.msg); 
       })
     );
   }

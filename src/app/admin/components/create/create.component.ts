@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from 'src/app/modalError/modal/modal.component';
 
 @Component({
   selector: 'app-create',
@@ -10,10 +12,12 @@ import { AdminService } from '../../services/admin.service';
 export class CreateComponent implements OnInit {
 
   formularioProducto:FormGroup;
+  categoria = new FormControl('',[Validators.required])
 
   constructor(
     private formBuilder: FormBuilder,
-    private adminSvc:AdminService
+    private adminSvc:AdminService,
+    public dialog:MatDialog,
   ) { 
     this.formularioProducto = this.formBuilder.group({
       nombre: ['',Validators.required],
@@ -32,13 +36,20 @@ export class CreateComponent implements OnInit {
     }
     console.log('creado');
   }
-  crearCategoria(category = {nombre: 'blazers'}){
-    this.adminSvc.addCategory(category).subscribe(res=>{
-      console.log(res);
-    },
-    err =>{
-      console.log(err);
-    })
-  }
 
+  crearCategoria(){
+    if(this.categoria.invalid){
+      this.categoria.markAsTouched();
+    }else{
+      const category = {'nombre':this.categoria.value}
+      this.adminSvc.addCategory(category).subscribe(
+        res=>console.log(res),
+        err =>{
+          this.dialog.open(ModalComponent,{
+            disableClose:false,
+            data:err
+        })}
+      )
+    }
+  }
 }
