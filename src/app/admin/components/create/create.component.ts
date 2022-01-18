@@ -12,7 +12,8 @@ import { ModalComponent } from 'src/app/modalError/modal/modal.component';
 export class CreateComponent implements OnInit {
 
   formularioProducto:FormGroup;
-  categoria = new FormControl('',[Validators.required])
+  formularioCategoria:FormGroup;
+
   categorias = [];
 
   constructor(
@@ -26,6 +27,15 @@ export class CreateComponent implements OnInit {
       precio: ['',Validators.required],
       img: ['',Validators.required],
       desc: ['',Validators.required],
+    });
+    this.formularioCategoria = this.formBuilder.group({
+      editar: this.formBuilder.group({
+        categoria: ['',Validators.required],
+        nombre: ['',Validators.required],
+      }),
+      crear: this.formBuilder.group({
+        nombre: ['',Validators.required]
+      })
     })
   }
 
@@ -36,7 +46,6 @@ export class CreateComponent implements OnInit {
   getAllcategories(){
     this.adminSvc.getCategories().subscribe((res) =>{
       this.categorias = res['categorias'];
-      console.log(this.categorias);
     });
   }
 
@@ -46,7 +55,6 @@ export class CreateComponent implements OnInit {
     }else{
       const { categoria, nombre } = this.formularioProducto.value
       const product = {nombre, categoria}
-
       this.adminSvc.addProduct(product).subscribe(
         res =>console.log(res),
         err =>console.log(err)
@@ -55,18 +63,33 @@ export class CreateComponent implements OnInit {
   }
 
   crearCategoria(){
-    if(this.categoria.invalid){
-      this.categoria.markAsTouched();
+    if(this.formularioCategoria.get(['crear','nombre']).invalid){
+      this.formularioCategoria.get(['crear']).markAllAsTouched();
     }else{
-      const category = {'nombre':this.categoria.value}
-      this.adminSvc.addCategory(category).subscribe(
+      console.log(this.formularioCategoria.value.crear);
+      
+  this.adminSvc.addCategory(this.formularioCategoria.value.crear).subscribe(
         res=>console.log(res),
         err =>{
           this.dialog.open(ModalComponent,{
             disableClose:false,
-            data:err
+            data:err.error.msg
         })}
-      )
+      ) 
     }
   }
-}
+
+  editarCategoria(){
+    if(this.formularioCategoria.get(['editar']).invalid){
+      this.formularioCategoria.get(['editar']).markAllAsTouched();
+    }else{
+      this.adminSvc.editCategory(this.formularioCategoria.value.editar).subscribe(
+        res=>console.log(res),
+        err =>console.log(err)
+        
+      )
+      console.log(this.formularioCategoria.value.editar);
+    }
+  }
+  }
+

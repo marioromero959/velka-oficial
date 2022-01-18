@@ -10,9 +10,26 @@ form{
     flex-direction: column;
     mat-form-field{
     margin: auto;
-    width: 90%;
+    width: 70%;
     }
 }
+.categorias form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px 0;
+    .editar,.crear{
+        display: flex;
+        flex-direction: column;
+    }
+    mat-form-field{
+        width: 90%;
+    }
+}
+.imagen{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
 .imagen{
     display: flex;
     justify-content: space-between;
@@ -45,5 +62,11 @@ button{
         margin: auto;
         width: 90%;
         }
+    }
+    .imagen{
+        width: 90%;
+    }
+    .categorias form{
+        flex-direction: column;
     }
 }

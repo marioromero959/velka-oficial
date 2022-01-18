@@ -14,13 +14,25 @@ export class AdminService {
   }
 
   addCategory(category){
-    return this.http.post(`${environment.API}/api/categorias`,category)
+    const headers = new HttpHeaders({
+      'x-token':localStorage.getItem('token')
+    })
+    return this.http.post(`${environment.API}/api/categorias`,category,{headers})
   }
 
-  editCategory(){}
+  editCategory(category){
+    const headers = new HttpHeaders({
+      'x-token':localStorage.getItem('token')
+    })
+    return this.http.put(`${environment.API}/api/categorias/${category.categoria}`,{nombre:category.nombre},{headers})
+  }
 
   addProduct(product){
-    return this.http.post(`${environment.API}/api/productos`,product)
+    const headers = new HttpHeaders({
+      'x-token':localStorage.getItem('token')
+    })
+    return this.http.post(`${environment.API}/api/productos`,product,{headers})
+
   }
   
   editProduct(){}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -20,7 +20,11 @@ export class LoginService {
 
   login(data){
     return this.http.post(`${environment.API}/api/auth/login`,data)
-      .pipe(map(res=>res['token']));
+      .pipe(
+      tap((res:any)=>{
+        localStorage.setItem('token',res.token)
+      })
+      )
   }
 
 

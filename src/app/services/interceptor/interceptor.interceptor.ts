@@ -28,17 +28,17 @@ export class InterceptorInterceptor implements HttpInterceptor {
       headers:headers
     });
 
-    return next.handle(reqClone)/* .pipe(
+    return next.handle(reqClone).pipe(
       catchError((err)=>{
-        if(this.router.url == '/register'){
-          return throwError(err.error.errors[0].msg);
-        }
-        if(this.router.url == '/login'){
-          return throwError(err.error.msg); 
-        }
-        //TODO: Dejar solo una
-        return throwError(err.error.msg); 
+        // if(this.router.url == '/register'){
+          // return throwError(err.error.errors[0].msg);
+        // }
+        // if(this.router.url == '/login'){
+          // return throwError(err.error.msg); 
+        // }
+        return throwError(err); 
       })
-    ); */
+    );
+
   }
 }
