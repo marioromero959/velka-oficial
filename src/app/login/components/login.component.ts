@@ -63,17 +63,15 @@ export class LoginComponent implements OnInit {
     }else{
       this.loginSvc.login(this.login.value).subscribe(
         res=>{
-          this.token = res;
-          localStorage.setItem('token',this.token)
           this.loginSvc.getUserLogged(true);
           this.router.navigate(['/home'])
         },
         err=>{
-          console.log(err);/* 
+          console.log(err);
             const dialogRef = this.dialog.open(ModalComponent,{
               disableClose:false,
               data:err.error.msg
-            });  */
+            }); 
           }
       )  
     }

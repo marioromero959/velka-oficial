@@ -1,40 +1,61 @@
 <div class="container">
-    <h1>Crear Nuevo Producto</h1>
-    <form [formGroup]="formularioProducto">
-    <mat-form-field appearance="fill">
-        <mat-label>Nombre del producto</mat-label>
-        <input matInput formControlName="nombre">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Categoría</mat-label>
-        <mat-select matInput formControlName="categoria">
-       <mat-option *ngFor="let category of categorias" [value]="category._id">
-                {{category.nombre}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Precio</mat-label>
-        <input matInput formControlName="precio" type="number">
-    </mat-form-field>
-    <div class="imagen">
-        <mat-label>Imagen</mat-label>
-        <input formControlName="img" type="file">
-    </div>
-    <mat-form-field appearance="fill">
-        <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="desc">
-      </mat-form-field>
-    </form>
-    <button mat-button (click)="crearProducto()" color="primary">Crear</button>
-
-
-    <h1>Crear Nueva Categoria</h1>
-    <form>
+    <div class="productos">
+        <h1>Crear Nuevo Producto</h1>
+        <form [formGroup]="formularioProducto">
         <mat-form-field appearance="fill">
-            <mat-label>Nombre de la Categoría</mat-label>
-            <input matInput [formControl]="categoria">
+            <mat-label>Nombre del producto</mat-label>
+            <input matInput formControlName="nombre">
         </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Categoría</mat-label>
+            <mat-select matInput formControlName="categoria">
+           <mat-option *ngFor="let category of categorias" [value]="category._id">
+                    {{category.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input matInput formControlName="precio" type="number">
+        </mat-form-field>
+        <div class="imagen">
+            <mat-label>Imagen</mat-label>
+            <input formControlName="img" type="file">
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Descripcion</mat-label>
+            <input matInput formControlName="desc">
+          </mat-form-field>
+          <button mat-button type="button" (click)="crearProducto()">Crear</button>
+        </form>
+    </div>
+
+<div class="categorias">
+    <form [formGroup]="formularioCategoria">
+        <div class="crear" formGroupName="crear">
+            <h1>Crear Nueva Categoria</h1>
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre de la Categoría</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+            <button mat-button type="button" (click)="crearCategoria()">Crear</button>
+        </div>
+        <div class="editar" formGroupName="editar">
+            <h1>Editar Una Categoria</h1>
+            <mat-form-field appearance="fill">
+                <mat-label>Elegir la categoria</mat-label>
+                <mat-select matInput formControlName="categoria">
+                    <mat-option *ngFor="let category of categorias" [value]="category._id">
+                        {{category.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Nuevo nombre </mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+            <button mat-button type="button" (click)="editarCategoria()">Editar</button>
+        </div>
     </form>
-    <button mat-button (click)="crearCategoria()">Crear</button>
+</div>
 </div>
