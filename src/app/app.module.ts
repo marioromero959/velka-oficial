@@ -34,6 +34,7 @@ import { ModalComponent } from './modalError/modal/modal.component';
     useClass:InterceptorInterceptor,
     multi: true,
   } */],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

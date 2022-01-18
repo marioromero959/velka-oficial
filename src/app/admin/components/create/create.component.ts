@@ -91,6 +91,5 @@ export class CreateComponent implements OnInit {
       console.log(this.formularioCategoria.value.editar);
     }
   }
+  }
 
-
-}

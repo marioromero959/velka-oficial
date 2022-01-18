@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit {
               disableClose:false,
               data:err.error.msg
             }); 
+
           }
       )  
     }
