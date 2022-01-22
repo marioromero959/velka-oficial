@@ -26,7 +26,7 @@ export class CreateComponent implements OnInit {
       categoria: ['',Validators.required],
       precio: ['',Validators.required],
       img: ['',Validators.required],
-      desc: ['',Validators.required],
+      descripcion: ['',Validators.required],
     });
     this.formularioCategoria = this.formBuilder.group({
       editar: this.formBuilder.group({
@@ -95,8 +95,8 @@ export class CreateComponent implements OnInit {
     if(this.formularioProducto.invalid){
       this.formularioProducto.markAllAsTouched()
     }else{
-      const { categoria, nombre } = this.formularioProducto.value
-      const product = {nombre, categoria}
+      const { categoria, nombre, precio, descripcion } = this.formularioProducto.value
+      const product = {nombre, categoria, precio, descripcion}
       this.adminSvc.addProduct(product).subscribe(
         res =>console.log(res),
         err =>console.log(err)

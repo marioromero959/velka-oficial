@@ -43,7 +43,6 @@ export class AdminService {
       'x-token':localStorage.getItem('token')
     })
     return this.http.post(`${environment.API}/api/productos`,product,{headers})
-
   }
   
   editProduct(){}
