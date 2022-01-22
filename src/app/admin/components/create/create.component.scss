@@ -26,14 +26,11 @@ form{
         width: 90%;
     }
 }
+
 .imagen{
     display: flex;
     justify-content: space-between;
     width: 70%;
-.imagen{
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
     margin: auto;
     margin-bottom: 20px;
     padding: 20px 0;
@@ -50,6 +47,12 @@ form{
 button{
     width: 10%;
     margin: auto;
+}
+
+@media(max-width:760px){
+    .categorias form{
+        flex-direction: column;
+    }
 }
 @media(max-width:480px){
     h1{
@@ -69,5 +72,4 @@ button{
     .categorias form{
         flex-direction: column;
     }
-}
 }

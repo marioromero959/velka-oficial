@@ -9,6 +9,7 @@ export class AdminService {
 
   constructor(private http:HttpClient) { }
   
+  //Categorias
   getCategories(){
     return this.http.get(`${environment.API}/api/categorias`)
   }
@@ -27,6 +28,16 @@ export class AdminService {
     return this.http.put(`${environment.API}/api/categorias/${category.categoria}`,{nombre:category.nombre},{headers})
   }
 
+  deleteCategory(category){
+    const headers = new HttpHeaders({
+      'x-token':localStorage.getItem('token')
+    })
+    return this.http.delete(`${environment.API}/api/categorias/${category.categoria}`,{headers})
+
+  }
+
+  //--
+  //Productos
   addProduct(product){
     const headers = new HttpHeaders({
       'x-token':localStorage.getItem('token')
@@ -36,6 +47,5 @@ export class AdminService {
   }
   
   editProduct(){}
-  deleteCategory(){}
   deleteProduct(){}
 }

@@ -35,6 +35,9 @@ export class CreateComponent implements OnInit {
       }),
       crear: this.formBuilder.group({
         nombre: ['',Validators.required]
+      }),
+      eliminar: this.formBuilder.group({
+        categoria: ['',Validators.required]
       })
     })
   }
@@ -49,26 +52,11 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  crearProducto(){
-    if(this.formularioProducto.invalid){
-      this.formularioProducto.markAllAsTouched()
-    }else{
-      const { categoria, nombre } = this.formularioProducto.value
-      const product = {nombre, categoria}
-      this.adminSvc.addProduct(product).subscribe(
-        res =>console.log(res),
-        err =>console.log(err)
-      )
-    }
-  }
-
   crearCategoria(){
     if(this.formularioCategoria.get(['crear','nombre']).invalid){
       this.formularioCategoria.get(['crear']).markAllAsTouched();
     }else{
-      console.log(this.formularioCategoria.value.crear);
-      
-  this.adminSvc.addCategory(this.formularioCategoria.value.crear).subscribe(
+      this.adminSvc.addCategory(this.formularioCategoria.value.crear).subscribe(
         res=>console.log(res),
         err =>{
           this.dialog.open(ModalComponent,{
@@ -86,10 +74,36 @@ export class CreateComponent implements OnInit {
       this.adminSvc.editCategory(this.formularioCategoria.value.editar).subscribe(
         res=>console.log(res),
         err =>console.log(err)
-        
       )
       console.log(this.formularioCategoria.value.editar);
     }
   }
+
+  eliminarCategoria(){
+    if(this.formularioCategoria.get(['eliminar']).invalid){
+      this.formularioCategoria.get(['eliminar']).markAllAsTouched();
+    }else{
+      this.adminSvc.deleteCategory(this.formularioCategoria.value.eliminar).subscribe(
+        res=>console.log(res),
+        err =>console.log(err)
+        )
+    }
   }
+
+  //Productos
+  crearProducto(){
+    if(this.formularioProducto.invalid){
+      this.formularioProducto.markAllAsTouched()
+    }else{
+      const { categoria, nombre } = this.formularioProducto.value
+      const product = {nombre, categoria}
+      this.adminSvc.addProduct(product).subscribe(
+        res =>console.log(res),
+        err =>console.log(err)
+      )
+    }
+  }
+
+
+}
 
