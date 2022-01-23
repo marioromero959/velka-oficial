@@ -45,6 +45,27 @@ export class AdminService {
     return this.http.post(`${environment.API}/api/productos`,product,{headers})
   }
   
+
+  async uploadProductImg(archivo:File,id:string){
+    try {
+      const url = `${environment.API}/api/uploads/productos/${id}`;
+      const formData = new FormData();
+      formData.append('archivo',archivo)
+      const res = await fetch(url,{
+        method:'PUT',
+        body:formData
+      })
+      const data = await res.json()
+      console.log(data);
+
+    } catch (error) {
+        console.log(error);
+        return error
+    }
+  }
+
+
+
   editProduct(){}
   deleteProduct(){}
 }

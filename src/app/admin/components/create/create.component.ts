@@ -13,6 +13,8 @@ export class CreateComponent implements OnInit {
 
   formularioProducto:FormGroup;
   formularioCategoria:FormGroup;
+  imagenProducto:File;
+  viewImg:any = '../../../../assets/no-img.png'
 
   categorias = [];
 
@@ -91,6 +93,20 @@ export class CreateComponent implements OnInit {
   }
 
   //Productos
+  cambiarImg(e){
+    this.imagenProducto = e.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e)=>{
+      this.viewImg = e.target.result
+    }
+    if(this.imagenProducto == undefined){
+      this.viewImg = '../../../../assets/no-img.png'
+    }else{
+      reader.readAsDataURL(this.imagenProducto);
+    }
+  }
+
+
   crearProducto(){
     if(this.formularioProducto.invalid){
       this.formularioProducto.markAllAsTouched()
@@ -98,7 +114,11 @@ export class CreateComponent implements OnInit {
       const { categoria, nombre, precio, descripcion } = this.formularioProducto.value
       const product = {nombre, categoria, precio, descripcion}
       this.adminSvc.addProduct(product).subscribe(
-        res =>console.log(res),
+        (res:any)=>{
+            this.adminSvc.uploadProductImg(this.imagenProducto,res._id)
+            .then(img=>console.log(img))
+            .catch(error=>console.error(error))
+        },
         err =>console.log(err)
       )
     }
