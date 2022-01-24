@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductsService } from 'src/app/products/services/products.service';
+import { Productos } from '../../interface/product';
+import { ModalComponent } from '../modal/modal.component';
+
+@Component({
+  selector: 'app-inventario',
+  templateUrl: './inventario.component.html',
+  styleUrls: ['./inventario.component.scss']
+})
+export class InventarioComponent implements OnInit {
+
+  productos:Productos[]
+
+  constructor(private productSvc:ProductsService,
+    public dialog:MatDialog,
+    ) { 
+    this.productSvc.getAllProductsapi()
+    .subscribe((productos:Productos[])=>{
+    this.productos = productos
+    console.log(this.productos);
+    })
+  }
+
+  ngOnInit(): void {
+  }
+
+
+  editarProducto(producto){
+    const dialogRef = this.dialog.open(ModalComponent,{
+      disableClose:false,
+      data:producto
+    }); 
+    
+  }
+  borrarProducto(id){
+    console.log(id);
+    
+  }
+
+}
