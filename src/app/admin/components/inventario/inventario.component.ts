@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductsService } from 'src/app/products/services/products.service';
 import { Productos } from '../../interface/product';
+import { AdminService } from '../../services/admin.service';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -14,6 +15,7 @@ export class InventarioComponent implements OnInit {
   productos:Productos[]
 
   constructor(private productSvc:ProductsService,
+    private adminSvc:AdminService,
     public dialog:MatDialog,
     ) { 
     this.productSvc.getAllProductsapi()
@@ -34,8 +36,12 @@ export class InventarioComponent implements OnInit {
     }); 
     
   }
-  borrarProducto(id){
-    console.log(id);
+  borrarProducto(id,index){
+    this.productos.splice(index,1)
+    this.adminSvc.deleteProduct(id).subscribe(
+      res=>console.log(res),
+      err=>console.log(err)
+    )
     
   }
 

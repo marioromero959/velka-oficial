@@ -14,6 +14,8 @@ export class ModalComponent implements OnInit {
   imagenProducto:File;
   viewImg:any = '../../../../assets/no-img.png'
   categorias = [];
+  id:string = ''
+
 
   constructor( 
     private formBuilder: FormBuilder,
@@ -25,19 +27,20 @@ export class ModalComponent implements OnInit {
         nombre: ['',Validators.required],
         categoria: ['',Validators.required],
         precio: ['',Validators.required],
-        img: ['',Validators.required],
+        img: [''],
         descripcion: ['',Validators.required],
       });
     }
 
   ngOnInit(): void {
-    const {nombre,precio,categoria, img, descripcion} = this.data
+    const {_id, nombre,precio,categoria, img, descripcion} = this.data
       const producto = {
         nombre,
         categoria:categoria._id,
         precio,
         descripcion
       }
+      this.id = _id;
       this.viewImg = img
       this.adminSvc.getCategories().subscribe((res) =>{
         this.categorias = res['categorias'];
@@ -64,21 +67,24 @@ export class ModalComponent implements OnInit {
       }
     }
   
-  
-    crearProducto(){
+  //TODO: MENSAJE DE ERRORES
+    editarProducto(){
       if(this.formularioProducto.invalid){
         this.formularioProducto.markAllAsTouched()
       }else{
         const { categoria, nombre, precio, descripcion } = this.formularioProducto.value
-        const product = {nombre, categoria, precio, descripcion}
-        this.adminSvc.addProduct(product).subscribe(
+        const product = {id:this.id, nombre, categoria, precio, descripcion}
+        this.adminSvc.editProduct(product).subscribe(
           (res:any)=>{
+            console.log(res);
+            if(this.imagenProducto){
               this.adminSvc.uploadProductImg(this.imagenProducto,res._id)
               .then(img=>console.log(img))
               .catch(error=>console.error(error))
+            }
           },
           err =>console.log(err)
-        )
+        ) 
       }
     }
 }

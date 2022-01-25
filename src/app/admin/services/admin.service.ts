@@ -65,7 +65,21 @@ export class AdminService {
   }
 
 
+  editProduct(product){
+    const headers = new HttpHeaders({
+      'x-token':localStorage.getItem('token')
+    })
+    return this.http.put(`${environment.API}/api/productos/${product.id}`,{nombre:product.nombre,precio:product.precio},{headers})
 
-  editProduct(){}
-  deleteProduct(){}
+  }
+
+  deleteProduct(id){
+    console.log(id);
+    
+    const headers = new HttpHeaders({
+      'x-token':localStorage.getItem('token')
+    })
+    return this.http.delete(`${environment.API}/api/productos/${id}`,{headers})
+
+  }
 }

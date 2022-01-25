@@ -9,14 +9,14 @@
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>
-            <tr *ngFor ="let producto of productos" class="productos">
+            <tr *ngFor ="let producto of productos; let i = index" class="productos">
               <td>{{producto.nombre}}</td>
               <td>{{producto.precio}}</td>
               <td>Lorem ipsum dolor sit amet consectetur adipisicing </td>
               <th><button mat-icon-button (click)="editarProducto(producto)" color="primary">
                 <mat-icon>border_color</mat-icon>
               </button></th>
-              <th><button mat-icon-button (click)="borrarProducto(producto)" color="warn">
+              <th><button mat-icon-button (click)="borrarProducto(producto._id,i)" color="warn">
                 <mat-icon>delete</mat-icon>
               </button></th>
             </tr>
