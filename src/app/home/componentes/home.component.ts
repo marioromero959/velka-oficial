@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  cards = [
+    {img:"../../../assets/img-velka/frase1.jpg"},
+    {img:"../../../assets/img-velka/post40.jpg"},
+    {img:"../../../assets/img-velka/frase2.jpg"}
+  ]
   constructor() { }
 
   ngOnInit(): void {}

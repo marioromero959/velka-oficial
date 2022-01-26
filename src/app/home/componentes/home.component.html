@@ -1,38 +1,14 @@
 <div class="container">
 </div>
 <section>
-  <mat-card class="card">
+  <mat-card class="card" *ngFor="let card of cards">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>@accesoriosvelka</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="../../../assets/img-velka/frase1.jpg" alt="velka-accesorios">
+    <img mat-card-image [src]="card.img" alt="velka-accesorios" loading="lazy">
     <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>@accesoriosvelka</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="../../../assets/img-velka/post40.jpg" alt="velka-accesorios">
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-  
-  <mat-card class="card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>@accesoriosvelka</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="../../../assets/img-velka/frase2.jpg" alt="velka-accesorios">
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
+      <button mat-button><mat-icon>favorite</mat-icon></button>
       <button mat-button>SHARE</button>
     </mat-card-actions>
   </mat-card>
@@ -45,7 +21,7 @@
   [matRippleRadius]=650
   [matRippleColor]="'white'"
   [routerLink]="['/about']">
-    <img mat-card-image src="../../../assets/banner.png" alt="velka-accesorios">
+    <img mat-card-image src="../../../assets/banner.png" alt="velka-accesorios" loading="lazy">
   </mat-card>
 </section>
 
@@ -57,7 +33,7 @@
   [matRippleColor]="'white'"
   [routerLink]="['/products/promo']"
   >
-    <img mat-card-image src="../../../assets/banner1.png" alt="velka-accesorios">
+    <img mat-card-image src="../../../assets/banner1.png" alt="velka-accesorios" loading="lazy">
   </mat-card>
 </section>
 

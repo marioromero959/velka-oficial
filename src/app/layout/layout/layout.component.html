@@ -6,7 +6,7 @@
         [opened]="(isHandset$ | async) === false"
         >
       <mat-toolbar>
-        <img src="../../../assets/logo.png" alt="velka_accesorios">
+        <img src="../../../assets/logo.png" alt="velka_accesorios" loading="lazy">
       </mat-toolbar>
       <mat-nav-list>
         <a mat-list-item routerLink="/home"  (click)="drawer.toggle()">Home</a>
@@ -30,7 +30,7 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         <a mat-list-item routerLink="/home">
-          <img src="../../../assets/logo.png" alt="accesorios_velka">
+          <img src="../../../assets/logo.png" alt="accesorios_velka" loading="lazy">
         </a>
         <span class="spacer"></span>
         <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>

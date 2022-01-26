@@ -19,9 +19,9 @@ export class PromoComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
     this.products = this.productSvc.getAllProducts() 
     //TODO
-    this.productSvc.getAllProductsapi().subscribe((res:any)=>{
-      this.productos = res.productos;
-      // console.log(this.productos);
+    this.productSvc.getAllProductsapi().subscribe(res=>{
+      this.productos = res;
+      console.log(res);
     }) 
   }
 

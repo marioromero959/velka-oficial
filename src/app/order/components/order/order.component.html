@@ -4,7 +4,7 @@
         <div *ngIf="(products$ | async) as products" class="container">
             <p *ngIf="products.length === 0">Aun no hay productos en tu carrito</p>
               <mat-card class="card" *ngFor="let product of products | order">
-                <img mat-card-image [src]="product.img" alt="product.description">
+                <img mat-card-image [src]="product.img" alt="product.description" loading="lazy">
                 <p>{{product.nombre}}</p>
                 <mat-card-content>
                   <p>Cantidad:{{product.cantidad}}</p>

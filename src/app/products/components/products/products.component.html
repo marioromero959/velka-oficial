@@ -8,15 +8,18 @@
         <mat-button-toggle value="acc">Accesorios</mat-button-toggle>
       </mat-button-toggle-group>
 </div>
-<div class="container">
-    <mat-card class="card" *ngFor="let product of products | productsFiltro:filterControl.value">
+<div class="container" *ngIf="productos.length !== 0">
+    <mat-card class="card" *ngFor="let product of productos | productsFiltro:filterControl.value">
         <mat-card-header>
             <mat-card-title>{{product.nombre}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image [src]="product.img" alt="Photo of a Shiba Inu">
+        <img mat-card-image [src]="product.img" alt="producto" loading="lazy">
         <mat-card-content>
+            <p class="precio">
+                {{product.precio | currency}}
+            </p>
             <p>
-             {{product.description}}
+                {{product.descripcion}}
             </p>
           </mat-card-content>
         <mat-card-actions>
@@ -24,12 +27,6 @@
             <button mat-raised-button color=primary (click)="addCart(product)">Agregar al carrito</button>
         </mat-card-actions>
     </mat-card>
+
+
 </div>
-
-<!-- Programacion reactiva 49 -->
-
-<!-- TODO: Mostrar los productos desde BD -->
-<!-- <div *ngFor="let producto of productos"> -->
-    <!-- <p>{{producto.nombre}}</p> -->
-    <!-- <img [src]="producto.img" alt=""> -->
-<!-- </div> -->

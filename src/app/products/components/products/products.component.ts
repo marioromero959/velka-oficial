@@ -21,8 +21,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(){
     this.products = this.productSvc.getAllProducts() 
     //TODO: Aplicar carga de productos
-    this.productSvc.getAllProductsapi().subscribe((res:any)=>{
-     this.productos = res.productos;
+    this.productSvc.getAllProductsapi().subscribe(res=>{
+     this.productos = res;
      console.log(this.productos);
     })
   }
