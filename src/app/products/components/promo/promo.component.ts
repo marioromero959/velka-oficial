@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { product } from '../../../shared/interface';
 import { OrderService } from 'src/app/services//order/order.service';
 import { ProductsService } from '../../services/products.service';
 import Swiper, { Navigation, Pagination,Autoplay } from 'swiper';
+import { Productos } from 'src/app/admin/interface/product';
 
 @Component({
   selector: 'app-promo',
@@ -11,14 +11,11 @@ import Swiper, { Navigation, Pagination,Autoplay } from 'swiper';
 })
 export class PromoComponent implements OnInit,AfterViewInit {
 
-  products:product[];
-  productos:any;
+  productos:Productos[];
 
   constructor(private productSvc:ProductsService, private orderSvc:OrderService) { }
 
   ngOnInit(): void {
-    this.products = this.productSvc.getAllProducts() 
-    //TODO
     this.productSvc.getAllProductsapi().subscribe(res=>{
       this.productos = res;
       console.log(res);
@@ -44,7 +41,7 @@ export class PromoComponent implements OnInit,AfterViewInit {
     });
   }
 
-  addCart(product:product){
+  addCart(product:Productos){
     this.orderSvc.addCart(product)
   }
 }

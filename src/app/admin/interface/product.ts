@@ -7,6 +7,7 @@ export interface Productos {
     categoria:  Categoria;
     disponible: boolean;
     img:        string;
+    cantidad?:   number;
 }
 
 export interface Categoria {

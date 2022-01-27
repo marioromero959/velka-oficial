@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { product } from '../../../shared/interface';
 import { OrderService } from 'src/app/services/order/order.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Productos } from 'src/app/admin/interface/product';
 
 @Component({
   selector: 'app-order',
@@ -12,8 +12,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class OrderComponent implements OnInit {
 
   disableButton:boolean = false;
-  products$:Observable<product[]>;
-  products:product[];
+  products$:Observable<Productos[]>;
+  products:Productos[];
   dataClient: FormGroup;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
 
@@ -57,11 +57,11 @@ export class OrderComponent implements OnInit {
     return this.emailField?.hasError('pattern') ? 'No es un email válido' : '';
   }
   
-  addCart(product:product){
+  addCart(product:Productos){
     this.orderSvc.addCart(product)
   }
-  deleteItem(product){
-    this.orderSvc.deleteCart(product)
+  deleteItem(productId){
+    this.orderSvc.deleteCart(productId)
   }
   total(){
     let total = this.products

@@ -3,9 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { product } from './../../shared/interface';
 import { OrderService } from './../../services/order/order.service';
 import { LoginService } from 'src/app/services/login/login.service';
+import { Productos } from 'src/app/admin/interface/product';
  
 @Component({
   selector: 'app-layout',
@@ -20,7 +20,7 @@ export class LayoutComponent implements OnInit {
     shareReplay(850)
   );
     badge$:Observable<number>;
-    products$:Observable<product[]>;
+    products$:Observable<Productos[]>;
     productos:any;
     token:string;
     session:string = 'Iniciar'

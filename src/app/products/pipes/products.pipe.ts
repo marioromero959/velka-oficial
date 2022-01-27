@@ -11,7 +11,7 @@ export class ProductsPipe implements PipeTransform {
       return value;
     }
     for(const producto of value){
-      if(producto.nombre.toLowerCase().indexOf(busqueda.toLowerCase()) > -1){
+      if(producto.categoria.nombre.toLowerCase().indexOf(busqueda.toLowerCase()) > -1){
         productosFiltrados.push(producto)
       }
     }

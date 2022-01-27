@@ -30,6 +30,12 @@ h2{
 button{
     margin: 15px;
 }
+strong{
+    font-family: 'Bebas Neue';
+    font-size: 35px;
+    font-weight: 300;
+    color: var(--primary);
+}
     @media(max-width:480px){
         h2{
             font-size: 25px;

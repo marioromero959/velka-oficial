@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container"  *ngIf="productos.length !== 0">
     <h2>Conocé nuestras promociones</h2>
-    <div class="swiper" >
+    <div class="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" *ngFor="let product of products">
+            <div class="swiper-slide" *ngFor="let product of productos">
                 <mat-card class="card" >
                     <img mat-card-image [src]="product.img" alt="product.description" loading="lazy">
                     <mat-card-content>
-                        <p>{{product.nombre}}</p>
+                        <p><strong>{{product.nombre}}</strong></p>
                         <p>{{product.precio | currency}}</p>
-                        <p>{{product.description}}</p>
+                        <p>{{product.descripcion}}</p>
                         <mat-card-actions>
-                            <button mat-raised-button [routerLink]="['/products',product.id]">Ver detalle</button>
+                            <button mat-raised-button [routerLink]="['/products',product._id]">Ver detalle</button>
                             <button mat-raised-button color=primary (click)="addCart(product)">Agregar al carrito</button>
                         </mat-card-actions>
                     </mat-card-content>

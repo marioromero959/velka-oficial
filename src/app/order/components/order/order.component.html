@@ -11,7 +11,7 @@
                     <p>{{product.precio*product.cantidad | currency}}</p>
                     <p>{{product.description}}</p>
                     <mat-card-actions>
-                        <button mat-raised-button (click)="deleteItem(product.id)">-</button>
+                        <button mat-raised-button (click)="deleteItem(product._id)">-</button>
                         <button mat-raised-button color=primary (click)="addCart(product)">+</button>
                     </mat-card-actions>
                 </mat-card-content>

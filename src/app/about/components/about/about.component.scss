@@ -12,13 +12,20 @@ h1{
 }
 mat-card{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     margin:15px;
 }
 img,mat-card-content{
-    width: 35%;
+    margin: auto;
+    margin-top: 0 !important;
+    width: 25%;
+    max-height: 500px;
 }
+mat-card-content{
+    width: 40%;
+}
+
 button{
     width:100px;
 }
@@ -33,7 +40,7 @@ mat-card{
 }
 img{
     width: 90%;
-    margin: 0;
+    margin: 10px;
 }
 mat-card-content{
     width: 100%;
