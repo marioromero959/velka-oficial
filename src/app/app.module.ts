@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/components/footer.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LayoutComponent } from './layout/layout/layout.component';
+import { LayoutComponent } from './layout/layout.component';
 import { InterceptorInterceptor } from './services/interceptor/interceptor.interceptor';
 import { ModalComponent } from './modalError/modal/modal.component';
 

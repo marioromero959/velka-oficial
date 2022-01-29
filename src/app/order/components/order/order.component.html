@@ -18,49 +18,58 @@
             </mat-card>
             <p *ngIf="products.length !== 0">Total:{{total() | currency}} </p>
         </div>
-        <div class="step"><button mat-raised-button matStepperNext>Siguiente</button></div>
+        <div class="step">
+          <button mat-raised-button matStepperNext [disabled]="products.length === 0">Siguiente</button>
+        </div>
     </mat-step>
 
     <mat-step [stepControl]="dataClient" editable="true">
       <form [formGroup]="dataClient">
         <ng-template matStepLabel>Tus datos</ng-template>
         <p>Necesitamos los siguientes datos para continuar</p>
-        <mat-form-field appearance="fill">
-          <mat-label>Nombre</mat-label>
+        <mat-form-field appearance="fill" *ngIf="!user">
+          <mat-label>Nombre y Apellido</mat-label>
           <input matInput formControlName="name" required>
           <mat-error *ngIf="nameField?.hasError('required')">Debes ingresar tu nombre</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Apellido</mat-label>
-          <input matInput formControlName="surname" required>
-          <mat-error *ngIf="surnameField?.hasError('required')">Debes ingresar tu apellido</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="!user">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" required>
           <mat-error *ngIf="emailField?.invalid">{{errorEmail()}}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Teléfono</mat-label>
-          <input matInput formControlName="telefono" placeholder="+5401234561" required>
-          <mat-error *ngIf="phField?.hasError('required')">Debes ingresar un teléfono</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
+
+        <p>¿Como querés retirar tu pedido?</p>
+        <mat-radio-group aria-label="Select an option" (change)="formaRetiro($event.value)">
+          <mat-radio-button color="primary" value="domicilio">Envio a domicilio</mat-radio-button>
+          <mat-radio-button color="primary" value="local">Retiro por el local</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field appearance="fill" *ngIf="envio === 'domicilio'">
           <mat-label>Dirección</mat-label>
           <input matInput formControlName="direction" required>
           <mat-error *ngIf="adressField?.hasError('required')">Debes ingresar tu dirección</mat-error>
         </mat-form-field>
+        <p *ngIf="envio === 'local'">Podés retirar tu pedido en Pasaje Estrada 855, Formosa</p>
+        <p *ngIf="envio === 'local'" class="aviso">Por favor, dejanos un teléfono para coordinar el horario de entrega</p>
+        <mat-form-field appearance="fill" *ngIf="envio === 'local'">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="telefono" placeholder="+540123456789" type="number">
+          <mat-error *ngIf="phField?.hasError('required')">Debes ingresar un teléfono</mat-error>
+          <mat-error *ngIf="phField?.hasError('min-length')">El telefono debe tener al menos 10 numeros</mat-error>
+        </mat-form-field>
         <div class="step">
           <button mat-raised-button matStepperPrevious color="primary">Volver</button>
-          <button mat-raised-button matStepperNext>Siguiente</button>
+          <button mat-raised-button matStepperNext (click)="imprimir()">Siguiente</button>
         </div>
       </form>
     </mat-step>
 
     <mat-step>
       <ng-template matStepLabel>Hecho</ng-template>
-      <p>Elegí tu método de pago</p>
+      <p>¡Ya casi!</p>
       <div class="step">
+        <div class="container">
+          
+        </div>
         <button mat-button matStepperPrevious>Volver</button>
         <button mat-button (click)="paid()">Pagar</button>
       </div>

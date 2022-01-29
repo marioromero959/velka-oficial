@@ -20,6 +20,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSortModule } from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatDialogModule,
     MatSelectModule,
+    MatRadioModule,
   ],exports:[
     MatButtonModule,
     LayoutModule,
@@ -67,6 +69,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatDialogModule,
     MatSelectModule,
+    MatRadioModule,
   ]
 })
 export class MaterialModule { }

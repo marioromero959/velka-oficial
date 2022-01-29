@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OrderService } from 'src/app/services/order/order.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Productos } from 'src/app/admin/interface/product';
 
 @Component({
@@ -16,6 +16,8 @@ export class OrderComponent implements OnInit {
   products:Productos[];
   dataClient: FormGroup;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+  envio:string = '';
+  user:boolean = false;
 
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder) {
     this.products$ = this.orderSvc.cart$;
@@ -25,13 +27,33 @@ export class OrderComponent implements OnInit {
   }
 
    ngOnInit() {
-    this.dataClient = this._formBuilder.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      telefono: ['', Validators.required],
-      direction: ['', Validators.required],
-    });
+    let userInfo = localStorage.getItem('token');
+
+    (userInfo) ? this.user = true : this.user = false;
+    
+    this.dataClient = this.generateForm();
+  }
+
+  generateForm(){
+    if(this.user){
+      return this._formBuilder.group({
+        telefono: [''],
+        direction: [''],
+        envio: ['', Validators.required],
+      });
+    }else{
+      return this._formBuilder.group({
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+        telefono: [''],
+        direction: [''],
+        envio: ['', Validators.required],
+      }); 
+    }
+  }
+
+  imprimir(){
+    console.log(this.dataClient);
   }
 
   get nameField(){
@@ -39,9 +61,6 @@ export class OrderComponent implements OnInit {
   }
   get emailField(){
     return this.dataClient.get('email');
-  }
-  get surnameField(){
-    return this.dataClient.get('surname');
   }
   get phField(){
     return this.dataClient.get('telefono');
@@ -69,6 +88,22 @@ export class OrderComponent implements OnInit {
     .reduce((a,b)=>a+b,0)
     return total
   }
+
+  formaRetiro(e){
+    if(e === 'local'){
+      console.log('local');
+      this.dataClient.get('telefono').addValidators(Validators.required)
+      this.dataClient.get('direction').patchValue('Escribí tu direccion')
+    }else{
+      console.log('domicilio');
+      this.dataClient.get('telefono').patchValue(0)
+      this.dataClient.get('direction').addValidators(Validators.required)
+    }
+    this.envio = e;
+    this.dataClient.get('envio').patchValue(e)
+  }
+
+
 
     paid(){}
 }
