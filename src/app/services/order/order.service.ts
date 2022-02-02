@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Productos } from 'src/app/admin/interface/product';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+export interface RtaMP {
+  preferenceID: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +18,7 @@ export class OrderService {
 
   cart$ = this.cart.asObservable();
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   addCart(product:Productos){
     this.products = [...this.products,product]
@@ -23,6 +29,11 @@ export class OrderService {
      const index = this.products.findIndex(obj => obj._id === id)
      this.products.splice(index, 1);
      this.cart.next(this.products)
+  }
+
+
+  modalMP(data){
+    return this.http.post<RtaMP>(`${environment.API}/api/order`,data)
   }
 
 }

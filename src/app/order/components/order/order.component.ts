@@ -52,10 +52,6 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  imprimir(){
-    console.log(this.dataClient);
-  }
-
   get nameField(){
     return this.dataClient.get('name');
   }
@@ -91,7 +87,6 @@ export class OrderComponent implements OnInit {
 
   formaRetiro(e){
     if(e === 'local'){
-      console.log('local');
       this.dataClient.get('telefono').addValidators(Validators.required)
       this.dataClient.get('direction').patchValue('Escribí tu direccion')
     }else{
@@ -105,5 +100,18 @@ export class OrderComponent implements OnInit {
 
 
 
-    paid(){}
+    paid(){
+      this.orderSvc.modalMP({precioTotal:this.total()}).subscribe(
+        res=>{
+          var script = document.createElement("script");
+        script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+        script.type = "text/javascript";
+        script.dataset.preferenceId = res.preferenceID;
+        document.getElementById("page-content").innerHTML = "";
+        document.querySelector("#page-content").appendChild(script);
+
+        },
+        err=>console.log(err)
+        )
+    }
 }
