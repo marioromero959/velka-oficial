@@ -4,15 +4,15 @@
 @include mat-core();
 
 :root{
-  --primary:#376865;
+  --primary:#ff6ebe;
   --accent:#ffffff;
   --warn:#b92500;
 }
 
 // GAMA COLORES
 $my-primary-color: (
-  200 : #376865,
-  500 : #506e72,
+  200 : #ff6ebe,
+  500 : #ff6ebe,
   700 : #fdd052,
   contrast: (
     200 : #ffffff,

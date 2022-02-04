@@ -29,7 +29,7 @@ export class PromoComponent implements OnInit,AfterViewInit {
       loop: true,
       autoplay:{
         disableOnInteraction:false,
-        delay:3000,
+        delay:2000,
       },
       pagination: {
         el: '.swiper-pagination',

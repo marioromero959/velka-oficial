@@ -1,5 +1,6 @@
 .sidenav-container {
-    height: calc(100% - 20px);
+    height:100%;
+    background-color: #fff0f775;
   }
   
   .sidenav {
@@ -22,6 +23,7 @@
 .spacer{
   flex: .5 1 auto;
 }
+
 mat-toolbar{
   height: 40px;
   border-bottom: 1px solid #000;
@@ -60,6 +62,7 @@ mat-toolbar a:nth-child(1){
 mat-nav-list button{
   margin-left: 10px;
 }
+
 @media(max-width:830px){
   .sidenav,button{
     display: block;

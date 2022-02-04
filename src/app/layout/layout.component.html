@@ -46,7 +46,7 @@
         <a mat-list-item routerLink="/login" (click)="outSession()" routerLinkActive="active">{{session}} Sesión</a>
         <a mat-list-item routerLink="/register" routerLinkActive="active" *ngIf="session === 'Iniciar'">Registrate</a>
       </mat-toolbar>
-     <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
+     <app-footer></app-footer> 
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <app-footer></app-footer> 

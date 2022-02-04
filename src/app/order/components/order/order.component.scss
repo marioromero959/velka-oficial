@@ -1,6 +1,7 @@
 mat-stepper{
     width: 80%;
-    height: calc(100% - 45px);
+    min-height: 100vh;
+    height: max-content;
     margin: auto;
 }
 .card{
@@ -10,6 +11,7 @@ mat-stepper{
 }
 img{
     width: 200px;
+    height: 260px;
     border-radius: 5px;
 }
 p{
@@ -31,7 +33,13 @@ mat-card-actions{
     align-items: center;
     justify-content: center;
 }
-
+.logowpplink{
+    text-align: center;
+}
+.logowpp{
+    width: 40px;
+    height: 40px;
+}
 form{
     display: flex;
     flex-direction: column;

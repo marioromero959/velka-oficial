@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../services/order/order.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { Productos } from 'src/app/admin/interface/product';
@@ -26,6 +26,7 @@ export class LayoutComponent implements OnInit {
     session:string = 'Iniciar'
     
   constructor(
+    private route:ActivatedRoute,
     private breakpointObserver: BreakpointObserver,
     private orderSvc:OrderService,
     private router:Router,

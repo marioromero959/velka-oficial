@@ -2,15 +2,17 @@
 </div>
 <section>
   <mat-card class="card" *ngFor="let card of cards">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>@accesoriosvelka</mat-card-title>
+      <a href="https://www.instagram.com/accesoriosvelka/" target="_blank">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>@accesoriosvelka</mat-card-title>
     </mat-card-header>
     <img mat-card-image [src]="card.img" alt="velka-accesorios" loading="lazy">
     <mat-card-actions>
       <button mat-button><mat-icon>favorite</mat-icon></button>
       <button mat-button>SHARE</button>
     </mat-card-actions>
+    </a>
   </mat-card>
 </section>
 
@@ -26,19 +28,21 @@
 </section>
 
 <section class="promo">
-  <h3> <span><--</span> Promociones</h3>
+  <h3> <span><--</span> Preventa</h3>
   <mat-card matRipple
   [matRippleCentered]="true"
   [matRippleRadius]=650
   [matRippleColor]="'white'"
-  [routerLink]="['/products/promo']"
+  [routerLink]="['/products/preventa']"
   >
     <img mat-card-image src="../../../assets/banner1.png" alt="velka-accesorios" loading="lazy">
   </mat-card>
 </section>
 
 <div class="container">
-  <a href="https://www.instagram.com/accesoriosvelka/" target="_blank"><img src="../../../assets/iglogo.png" alt="logo-instagram-velka"></a>
-  <p>Contactanos</p>
-  <a href="https://wa.link/e6jjkf" target="_blank"><img src="../../../assets/wpplogo.png" alt="logo-whatsapp-velka"></a>
+  <a class="ig" href="https://www.instagram.com/accesoriosvelka/" target="_blank"><img src="../../../assets/ig-icon.png" alt="logo-instagram-velka">@accesoriosvelka</a>
+  <a class="ig" href="https://wa.link/e6jjkf" target="_blank"><img src="../../../assets/wp-icon.png" alt="logo-whatsapp-velka">¡Escribinos!</a>
+  <i><img src="../../../assets/visa-icon.png" alt=""></i>
+  <i><img src="../../../assets/mp-icon.png" alt=""></i>
+  <i><img src="../../../assets/master-icon.png" alt=""></i>
 </div>

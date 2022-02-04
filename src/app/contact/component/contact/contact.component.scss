@@ -1,5 +1,10 @@
+
 .contact{
     display: flex;
+    background:url('../../../../assets/bg-about.jpg');
+    background-position-y: center;
+    background-size:cover;
+    min-height:calc(100vh - 60px)
 }
 .container{
     width: 80%;
@@ -15,6 +20,12 @@ h1{
     text-align: center;
     margin: 20px;    
     font-family: 'Bebas Neue';
+}
+p{
+    font-size: 30px;
+}
+img{
+    width: 70px;
 }
 form{
     display: flex;
