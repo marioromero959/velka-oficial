@@ -8,8 +8,8 @@
     text-align: center;
 }
 h2{
+    padding-top: 20px;
     font-family: 'Bebas Neue';
-    margin: 20px;
     font-size: 35px;
 }
 .swiper {
@@ -18,7 +18,10 @@ h2{
 }
 .swiper-slide{
   img{
-      width: 35%;
+      object-fit: cover;
+      height: 400px;
+      width: 19%;
+      margin: 0;
   }
 }
 .card{
@@ -27,6 +30,7 @@ h2{
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
+    box-shadow: none;
 }
 button{
     margin: 15px;
@@ -38,20 +42,31 @@ strong{
     color: var(--primary);
 }
 p{
-    margin: auto;
-    padding: 15px;
-    font-size: 20px;
+    width: 70%;
+    font-family: 'Lato';
+    font-weight: 400;
+    line-height: 30px;
+    margin: 10px auto;
+    font-size: 25px;
+}
+.pago{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 10px;
 }
     @media(max-width:480px){
         p{
+            width: 95%;
             font-size: 15px;
-            padding-top: 0;
+            padding: 0;
         }
         h2{
             font-size: 25px;
             margin-bottom: 0;
         }
         strong{
+            padding-top: 10px;
             font-size: 20px;
         }
         .swiper {
@@ -64,9 +79,11 @@ p{
         .card{
             flex-direction:column;
             height:-webkit-fill-available;
-        }img{
-            width: 80% !important;
+        }
+        img{
+            width: 100% !important;
             height: 60%;
+            margin: 5px;
         }
         .swiper-pagination{
             display: none;

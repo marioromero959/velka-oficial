@@ -22,6 +22,9 @@ import { PromoComponent } from './components/promo/promo.component';
     ProductsRoutingModule,
     MaterialModule,
     ReactiveFormsModule
+  ],
+  exports:[
+    PromoComponent
   ]
 })
 export class ProductsModule { }

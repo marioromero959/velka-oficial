@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Nuevos ingresos</h1>
+<div class="promos">
+    <div class="card">
+        <h2>
+            {{this.productos[0].nombre}}
+        </h2>
+        {{this.productos[0].precio | currency }}
+        <img [src]="this.productos[0].img" alt="">
+    </div>
+    <div class="card">
+        <h2>
+            {{this.productos[1].nombre}}
+        </h2>
+        {{this.productos[1].precio | currency }}
+        <img [src]="this.productos[1].img" alt="">
+    </div>
+</div>
+</div>

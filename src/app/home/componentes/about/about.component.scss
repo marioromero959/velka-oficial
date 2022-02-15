@@ -4,11 +4,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: calc(100% - 40px);
-    background: url('../../../../assets/bg-ab.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: center;
 }
 h1{
     font-size: 35px;
@@ -29,6 +24,8 @@ button{
     width:100px;
 }
 p{
+    font-family: 'Lato';
+    font-weight: 400;  
     font-size: 25px;
     line-height: 25px;
 }

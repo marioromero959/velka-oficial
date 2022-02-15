@@ -4,16 +4,16 @@
 @include mat-core();
 
 :root{
-  --primary:#ff6ebe;
+  --primary:#ee964e;
   --accent:#ffffff;
   --warn:#b92500;
 }
 
 // GAMA COLORES
 $my-primary-color: (
-  200 : #ff6ebe,
-  500 : #ff6ebe,
-  700 : #fdd052,
+  200 : #ee964e,
+  500 : #ee964e,
+  700 : #ee964e,
   contrast: (
     200 : #ffffff,
     500 : #ffffff,
@@ -22,7 +22,7 @@ $my-primary-color: (
 );
 
 $my-accent-color: (
-  200 : #e4e4e4,
+  200 : #ffffff,
   500 : #ffffff,
   700 : #bcc37a,
   contrast: (
@@ -62,7 +62,7 @@ $my-theme: mat-light-theme((
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Fuzzy Bubbles', 'cursive'; }
+body { margin: 0;font-family: 'Lato', sans-serif; }
 
 //Paginacion y navigation swiper
 .swiper-pagination-bullet-active{
