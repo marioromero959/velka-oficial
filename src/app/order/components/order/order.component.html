@@ -62,11 +62,16 @@
       <p>¡Ya casi!</p>
       <div class="step">
         <div class="container">
+          <div *ngFor="let product of products | order">
+              <p><strong>{{product.cantidad}}</strong> {{product.nombre}}</p>
+              <p>{{product.precio*product.cantidad | currency}} c/u </p>
+            </div>
+            <hr>
           <h3 *ngIf="products.length !== 0">El total a pagar es de:{{total() | currency}}</h3>
         </div>
         <button mat-button matStepperPrevious>Volver</button>
         <button mat-button id="page-content">Continuar</button>
-
       </div>
+      <h4>¡Bienvenida al squad, nos comunicamos con vos cuando tu pedido este listo!</h4>
     </mat-step>
   </mat-stepper>

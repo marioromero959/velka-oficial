@@ -21,7 +21,9 @@ export class OrderService {
   constructor(private http:HttpClient) { }
 
   addCart(product:Productos){
+    //todo revisar el agregar los productos
     this.products = [...this.products,product]
+    console.log('productos',this.products);
     this.cart.next(this.products)
   }
   deleteCart(id:string){

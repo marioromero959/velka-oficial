@@ -1,19 +1,17 @@
-<div class="container">
+<div class="container" *ngIf="productos.length != 0">
     <h1>Nuevos ingresos</h1>
-<div class="promos">
-    <div class="card">
+    <div class="producto1">
         <h2>
             {{this.productos[0].nombre}}
         </h2>
-        {{this.productos[0].precio | currency }}
         <img [src]="this.productos[0].img" alt="">
+        <p>Precio {{this.productos[0].precio | currency }}</p>
     </div>
-    <div class="card">
+    <div class="producto2">
         <h2>
             {{this.productos[1].nombre}}
         </h2>
-        {{this.productos[1].precio | currency }}
         <img [src]="this.productos[1].img" alt="">
+        <p>Precio {{this.productos[1].precio | currency }}</p>
     </div>
-</div>
 </div>

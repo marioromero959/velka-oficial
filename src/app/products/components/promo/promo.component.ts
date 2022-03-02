@@ -9,34 +9,26 @@ import { Productos } from 'src/app/admin/interface/product';
   templateUrl: './promo.component.html',
   styleUrls: ['./promo.component.scss']
 })
-export class PromoComponent implements OnInit,AfterViewInit {
+export class PromoComponent implements OnInit, AfterViewInit{
 
-  productos:Productos[];
+  // @Input('productos') products = [];
+  products:Productos[] = [];
 
   constructor(private productSvc:ProductsService, private orderSvc:OrderService) { }
 
   ngOnInit(): void {
     this.productSvc.getAllProductsapi().subscribe(res=>{
-      this.productos = res;
-      console.log(res);
-    }) 
+      this.products = res;
+    })
   }
 
   ngAfterViewInit(){
     Swiper.use([Navigation, Pagination,Autoplay]);
     const swiper = new Swiper('.swiper', {
-      // Optional parameters
       loop: true,
       autoplay:{
         disableOnInteraction:false,
         delay:2000,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
       },
     });
   }

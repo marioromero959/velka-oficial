@@ -1,40 +1,44 @@
-<div class="container">
+
+<div class="firstBanner">
 </div>
 
 <app-promo></app-promo>
 
-<div class="bg">
+<div class="banner banner1" routerLink="../products">
+  <h2>Conoce mas</h2>
+</div>
+
   <section>
     <mat-card class="card" *ngFor="let card of cards">
       <a href="https://www.instagram.com/accesoriosvelka/" target="_blank">
-<!--         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>@accesoriosvelka</mat-card-title>
-        </mat-card-header> -->
         <img mat-card-image [src]="card.img" alt="velka-accesorios" loading="lazy">
         <mat-card-actions>
           <button mat-button><mat-icon>favorite</mat-icon></button>
-          <button mat-button>SHARE</button>
+          <button mat-button>ME ENCANTA</button>
         </mat-card-actions>
       </a>
     </mat-card>
   </section>
   
-  <app-about></app-about>
-
-  <div class="banner">
-    <h2>Conoce mas</h2>
+  <div class="about">
+    <h2>¿Que es Velka hand made?</h2>
+    <p>Velka surge como un emprendimiento de accesorios super chiquito pero hechos con mucho amor, que luego de un tiempo creció y empezamos a realizar nuestras propias prendas hand made, siempre con el mismo amor e incluso más. 🤍</p>
+    <p>¡Gracias por eleginos!</p>
   </div>
-</div>
+
 
 <app-ingresos>
-  
-</app-ingresos>
+</app-ingresos> 
 
-<!-- <div class="container">
-  <a class="ig" href="https://www.instagram.com/accesoriosvelka/" target="_blank"><img src="../../../assets/ig-icon.png" alt="logo-instagram-velka">@accesoriosvelka</a>
-  <a class="ig" href="https://wa.link/e6jjkf" target="_blank"><img src="../../../assets/wp-icon.png" alt="logo-whatsapp-velka">¡Escribinos!</a>
+
+<div class="banner banner2" routerLink="../products">
+  <h2>Ver todos los productos</h2>
+</div>
+
+<div class="redes">
+  <a class="ig" href="https://www.instagram.com/accesoriosvelka/" target="_blank"><img src="../../../assets/ig-icon.png" alt="logo-instagram-velka"></a>
+  <a class="ig" href="https://wa.link/e6jjkf" target="_blank"><img src="../../../assets/wp-icon.png" alt="logo-whatsapp-velka"></a>
   <i><img src="../../../assets/visa-icon.png" alt=""></i>
   <i><img src="../../../assets/mp-icon.png" alt=""></i>
   <i><img src="../../../assets/master-icon.png" alt=""></i>
-</div> -->
+</div>

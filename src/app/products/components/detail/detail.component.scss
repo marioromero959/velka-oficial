@@ -16,7 +16,8 @@
 }
 img{
     margin: 0 !important;
-    width: 50%;
+    width: 400px;
+    max-height: 600px;
     border-radius: 5px;
 }
 button:nth-child(2){
@@ -26,6 +27,7 @@ button:nth-child(2){
 p{
     margin: 30px;
     font-size: 20px;
+    font-family: 'Lato';
 }
 button{
     margin: 8px;
@@ -36,6 +38,7 @@ mat-card-actions{
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin: 0;
     button{
         margin: 10px;
     }

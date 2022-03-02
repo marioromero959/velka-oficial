@@ -21,15 +21,21 @@
   display: none;
 }
 .spacer{
-  flex: .5 1 auto;
+  flex: .3 1 auto;
 }
 
 mat-toolbar{
   height: 40px;
   border-bottom: 1px solid #000;
 }
+mat-toolbar .btn-cart{
+  margin-left: 70%;
+}
 span,mat-icon{
   color: #000;
+}
+mat-menu mat-icon{
+  margin-left: 5px;
 }
 mat-toolbar a{
   color: #000;
@@ -51,7 +57,7 @@ mat-toolbar a:hover{
   color: #fff !important;
   background-color: var(--primary);
 }
-mat-toolbar a:nth-child(1){
+mat-toolbar a:nth-child(7){
   color: #000 !important;
   background-color:transparent;
 }

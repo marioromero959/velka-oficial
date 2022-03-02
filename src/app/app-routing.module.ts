@@ -14,27 +14,33 @@ const routes: Routes = [
     },
     {
       path: 'home',
-      loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+      loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+      data: { animation: 'animationHome' }
     },
     {
       path: 'login',
-      loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+      loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
+      data: { animation: 'animationLogin' }
     },
     {
       path: 'register',
-      loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+      loadChildren: () => import('./register/register.module').then(m => m.RegisterModule),
+      data: { animation: 'animationRegister' }
     },
     {
       path: 'products',
-      loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
+      loadChildren: () => import('./products/products.module').then(m => m.ProductsModule),
+      data: { animation: 'animationProducts' }
     },
     {
       path: 'contact',
-      loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+      loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule),
+      data: { animation: 'animationContact' }
     },
     {
       path: 'order',
-      loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
+      loadChildren: () => import('./order/order.module').then(m => m.OrderModule),
+      data: { animation: 'animationOrder' }
     },
   ]
   },

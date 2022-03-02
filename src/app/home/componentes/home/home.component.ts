@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Productos } from 'src/app/admin/interface/product';
+import { ProductsService } from 'src/app/products/services/products.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,7 @@ export class HomeComponent implements OnInit {
     {img:"../../../assets/img-velka/post40.jpg"},
     {img:"../../../assets/img-velka/frase2.jpg"}
   ]
-  constructor() { }
+  constructor(private productSvc:ProductsService) {}
 
   ngOnInit(): void {}
   
