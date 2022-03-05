@@ -23,12 +23,12 @@ export class LayoutComponent implements OnInit {
     map(result => result.matches),
     shareReplay(850)
   );
-    badge$:Observable<number>;
     products$:Observable<Productos[]>;
     productos:any;
     token:string;
     session:string = 'Iniciar'
-    count = 0
+    count
+    
   constructor(
     private route:ActivatedRoute,
     private breakpointObserver: BreakpointObserver,
@@ -36,9 +36,7 @@ export class LayoutComponent implements OnInit {
     private router:Router,
     private loginSvc:LoginService
     ){
-    this.badge$ = this.orderSvc.cart$.pipe(
-      map(result => result.length)
-    )
+
     this.products$ = this.orderSvc.cart$
     this.products$.subscribe(products=>{
       this.productos = products;
@@ -49,6 +47,7 @@ export class LayoutComponent implements OnInit {
         this.session = 'Cerrar'
       }
     }) 
+
   }
 
   ngOnInit() {}
@@ -60,9 +59,17 @@ export class LayoutComponent implements OnInit {
     this.router.navigate(['/order'])
   }
   
+public badge(){
+  let badge = this.productos
+  .map(product=>product.cantidad)
+  .reduce((a,b)=>a+b,0);
+  return badge
+}
+
   public total() {
-    let total = 0;
-    this.productos.forEach(p => total += p.precio);
+    let total = this.productos
+    .map(product=>product.precio*product.cantidad)
+    .reduce((a,b)=>a+b,0);
     return total;
   }
 

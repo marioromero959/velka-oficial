@@ -31,12 +31,12 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         <button mat-icon-button class="btn-cart" [matMenuTriggerFor]="menu">
-          <mat-icon [matBadge]="badge$ | async" matBadgePosition="below">shopping_cart</mat-icon>
+          <mat-icon [matBadge]="badge()" matBadgePosition="below">shopping_cart</mat-icon>
         </button>
         <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>
         <a mat-list-item routerLink="/products" routerLinkActive="active" >Productos</a>
         <a mat-list-item routerLink="/contact" routerLinkActive="active" >Contacto</a>
-        <a mat-button color="primary" [matMenuTriggerFor]="menu">Carrito<mat-icon [matBadge]="badge$ | async">shopping_cart</mat-icon></a>
+        <a mat-button color="primary" [matMenuTriggerFor]="menu">Carrito<mat-icon [matBadge]="badge() ">shopping_cart</mat-icon></a>
         <span class="spacer"></span>
         <a mat-list-item routerLink="/home">
           <img src="../../../assets/logo.png" alt="accesorios_velka" loading="lazy">

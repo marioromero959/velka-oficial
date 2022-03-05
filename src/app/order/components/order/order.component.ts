@@ -33,6 +33,7 @@ export class OrderComponent implements OnInit {
     (userInfo) ? this.user = true : this.user = false;
     
     this.dataClient = this.generateForm();
+    
   }
 
   generateForm(){
@@ -74,9 +75,12 @@ export class OrderComponent implements OnInit {
   deleteItem(productId){
     this.orderSvc.deleteCart(productId)
   }
+  deleteAll(){
+    this.orderSvc.deleteAllCart()
+  }
   total(){
     let total = this.products
-    .map(product=>product.precio)
+    .map(product=>product.precio*product.cantidad)
     .reduce((a,b)=>a+b,0)
     return total
   }

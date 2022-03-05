@@ -19,20 +19,32 @@ export class OrderService {
   cart$ = this.cart.asObservable();
 
   constructor(private http:HttpClient) { }
-
+//Ver cantidad en orden
   addCart(product:Productos){
-    //todo revisar el agregar los productos
-    this.products = [...this.products,product]
-    console.log('productos',this.products);
+    let repetido = this.products.find(p=>p._id == product._id)//Verificamos si el producto ya esta en el carrito
+    if(repetido){
+      repetido.cantidad++
+    }else{
+      product.cantidad = 1
+      this.products.push(product)
+    }
     this.cart.next(this.products)
   }
+
   deleteCart(id:string){
     this.products = [...this.products]
      const index = this.products.findIndex(obj => obj._id === id)
-     this.products.splice(index, 1);
+     let repetido = this.products.find(p=>p._id == id)
+     repetido.cantidad = repetido.cantidad - 1
+     if(repetido.cantidad === 0){
+       this.products.splice(index, 1);
+     }
      this.cart.next(this.products)
   }
-
+  deleteAllCart(){
+    this.products.splice(0,this.products.length)
+    this.cart.next(this.products)
+  }
 
   modalMP(data){
     return this.http.post<RtaMP>(`${environment.API}/api/order`,data)

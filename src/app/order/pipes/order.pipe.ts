@@ -8,7 +8,7 @@ export class OrderPipe implements PipeTransform {
 
   transform(value: Productos[], ...args: unknown[]):any{
     const show:Productos[] = []
-    value.forEach(item =>{
+/*     value.forEach(item =>{
       if(!show.includes(item)){
         show.push(item)
         item.cantidad = 1
@@ -16,7 +16,7 @@ export class OrderPipe implements PipeTransform {
         item.cantidad++
       } 
       return show
-    })
+    }) */
     return show
 }
 }
