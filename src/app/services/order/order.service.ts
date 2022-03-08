@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Productos } from 'src/app/admin/interface/product';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 export interface RtaMP {
   preferenceID: string;
@@ -46,8 +46,8 @@ export class OrderService {
     this.cart.next(this.products)
   }
 
-  modalMP(data){
-    return this.http.post<RtaMP>(`${environment.API}/api/order`,data)
+  modalMP(productos){
+    return this.http.post<RtaMP>(`${environment.API}/api/order`,productos)
   }
 
 }

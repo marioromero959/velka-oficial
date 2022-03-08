@@ -40,17 +40,17 @@
         </mat-form-field>
 
         <p>¿Como querés retirar tu pedido?</p>
-        <mat-radio-group aria-label="Select an option" (change)="formaRetiro($event.value)">
+        <mat-radio-group aria-label="Select an option" formControlName="envio">
           <mat-radio-button color="primary" value="domicilio">Envio a domicilio</mat-radio-button>
           <mat-radio-button color="primary" value="local">Retiro por el local</mat-radio-button>
         </mat-radio-group>
-        <mat-form-field appearance="fill" *ngIf="envio === 'domicilio'">
+        <mat-form-field appearance="fill" *ngIf="this.dataClient.get('envio').value !== 'local'">
           <mat-label>Dirección</mat-label>
-          <input matInput formControlName="direction" required>
+          <input matInput formControlName="direction">
           <mat-error *ngIf="adressField?.hasError('required')">Debes ingresar tu dirección</mat-error>
         </mat-form-field>
-        <p *ngIf="envio === 'local'" class="aviso">Por favor, comunicate con nosotros para coordinar la entrega, ¡gracias!</p>
-        <a class="logowpplink" href="https://wa.link/e6jjkf" target="_blank" *ngIf="envio === 'local'"><img src="../../../assets/wp-icon.png" alt="logo-whatsapp-velka" class="logowpp"></a>
+        <p class="aviso">Por favor, comunicate con nosotros para coordinar la entrega, ¡gracias!</p>
+        <a class="logowpplink" href="https://wa.link/e6jjkf" target="_blank"><img src="../../../assets/wp-icon.png" alt="logo-whatsapp-velka" class="logowpp"></a>
         <div class="step">
           <button mat-raised-button matStepperPrevious color="primary">Volver</button>
           <button mat-raised-button matStepperNext (click)="paid()">Siguiente</button>
@@ -63,7 +63,7 @@
       <p>¡Ya casi!</p>
       <div class="step">
         <div class="container">
-          <div *ngFor="let product of products | order">
+          <div *ngFor="let product of products">
               <p><strong>{{product.cantidad}}</strong> {{product.nombre}}</p>
               <p>{{product.precio*product.cantidad | currency}} c/u </p>
             </div>

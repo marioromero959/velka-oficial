@@ -17,7 +17,7 @@ export class OrderComponent implements OnInit {
   products:Productos[];
   dataClient: FormGroup;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
-  envio:string = '';
+    // envio:string = '';
   user:boolean = false;
 
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder,private _email: MailService) {
@@ -40,14 +40,14 @@ export class OrderComponent implements OnInit {
     if(this.user){
       return this._formBuilder.group({
         direction: [''],
-        envio: [''],
+        envio: ['local'],
       });
     }else{
       return this._formBuilder.group({
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
         direction: [''],
-        envio: [''],
+        envio: ['local'],
       }); 
     }
   }
@@ -85,33 +85,26 @@ export class OrderComponent implements OnInit {
     return total
   }
 
-  formaRetiro(e){
-    this.envio = e;
-    this.dataClient.get('envio').patchValue(e)
-  }
-
-  enviar(){
+/*   enviar(){
     if(this.dataClient.valid){
       this._email.enviarMail(this.dataClient.value).subscribe((res:any)=>{
         console.log(res)
       });
     }
-  } 
+  }  */
 
-    paid(){
-      console.log(this.dataClient);
-      
-      this.orderSvc.modalMP({precioTotal:this.total()}).subscribe(
-        res=>{
-          var script = document.createElement("script");
-        script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-        script.type = "text/javascript";
-        script.dataset.preferenceId = res.preferenceID;
-        document.getElementById("page-content").innerHTML = "";
-        document.querySelector("#page-content").appendChild(script);
-        this.enviar();
-        },
-        err=>console.log(err)
-        )
-    }
+  paid(){
+    this.orderSvc.modalMP(this.products).subscribe(
+      res=>{
+        var script = document.createElement("script");
+      script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.type = "text/javascript";
+      script.dataset.preferenceId = res.preferenceID;
+      document.getElementById("page-content").innerHTML = "";
+      document.querySelector("#page-content").appendChild(script);
+      // this.enviar();
+      },
+      err=>console.log(err)
+      )
+  }
 }
