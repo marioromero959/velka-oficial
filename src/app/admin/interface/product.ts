@@ -6,8 +6,9 @@ export interface Productos {
     precio:     number;
     categoria:  Categoria;
     disponible: boolean;
+    talle?:     string;
     img:        string;
-    cantidad?:   number;
+    cantidad?:  number;
 }
 
 export interface Categoria {

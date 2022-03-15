@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Productos } from 'src/app/admin/interface/product';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 export interface RtaMP {
   preferenceID: string;
@@ -19,10 +19,16 @@ export class OrderService {
   cart$ = this.cart.asObservable();
 
   constructor(private http:HttpClient) { }
-//Ver cantidad en orden
   addCart(product:Productos){
     let repetido = this.products.find(p=>p._id == product._id)//Verificamos si el producto ya esta en el carrito
     if(repetido){
+      //TODO tamaño repetido
+      if(this.products.find(p=>p.talle == product.talle)){
+        console.log(`producto con talle ${product.talle}`);
+      }else{
+        console.log('producto repetido con otro talle');
+      }
+    //
       repetido.cantidad++
     }else{
       product.cantidad = 1

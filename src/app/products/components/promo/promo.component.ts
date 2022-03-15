@@ -3,6 +3,8 @@ import { OrderService } from 'src/app/services//order/order.service';
 import { ProductsService } from '../../services/products.service';
 import Swiper, { Navigation, Pagination,Autoplay } from 'swiper';
 import { Productos } from 'src/app/admin/interface/product';
+import { DetailComponent } from '../detail/detail.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-promo',
@@ -14,7 +16,11 @@ export class PromoComponent implements OnInit, AfterViewInit{
   // @Input('productos') products = [];
   products:Productos[] = [];
 
-  constructor(private productSvc:ProductsService, private orderSvc:OrderService) { }
+  constructor(
+    private productSvc:ProductsService,
+    private orderSvc:OrderService,
+    public dialog:MatDialog,
+    ) { }
 
   ngOnInit(): void {
     this.productSvc.getAllProductsapi().subscribe(res=>{
@@ -34,6 +40,10 @@ export class PromoComponent implements OnInit, AfterViewInit{
   }
 
   addCart(product:Productos){
-    this.orderSvc.addCart(product)
+    const dialogRef = this.dialog.open(DetailComponent,{
+      disableClose:false,
+      data:product
+    }); 
+    // this.orderSvc.addCart(product)
   }
 }

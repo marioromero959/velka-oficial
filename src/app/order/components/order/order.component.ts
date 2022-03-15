@@ -24,6 +24,8 @@ export class OrderComponent implements OnInit {
     this.products$ = this.orderSvc.cart$;
     this.products$.subscribe(products => {
       this.products = products;
+      console.log(this.products);
+      
     })
   }
 
