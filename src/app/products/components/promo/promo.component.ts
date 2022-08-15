@@ -44,6 +44,5 @@ export class PromoComponent implements OnInit, AfterViewInit{
       disableClose:false,
       data:product
     }); 
-    // this.orderSvc.addCart(product)
   }
 }

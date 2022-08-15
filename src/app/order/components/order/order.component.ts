@@ -17,14 +17,15 @@ export class OrderComponent implements OnInit {
   products:Productos[];
   dataClient: FormGroup;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
-    // envio:string = '';
   user:boolean = false;
-
+  productsForm: FormGroup
+  
   constructor(private orderSvc:OrderService,private _formBuilder: FormBuilder,private _email: MailService) {
+    
     this.products$ = this.orderSvc.cart$;
     this.products$.subscribe(products => {
       this.products = products;
-      console.log(this.products);
+      // console.log("desde order c",this.products);
       
     })
   }
@@ -35,8 +36,30 @@ export class OrderComponent implements OnInit {
     (userInfo) ? this.user = true : this.user = false;
     
     this.dataClient = this.generateForm();
-    
+    this.productsForm = this.createProductsForm()
   }
+
+  createProductsForm(){
+    return this._formBuilder.group({
+      productos: this._formBuilder.array([])
+    })
+  }
+
+  productForm(){
+    return this._formBuilder.group({
+      cantidad:[''],
+      categoria:[''],
+      descripcion:[''],
+      disponible:[''],
+      img:[''],
+      nombre:[''],
+      precio:[''],
+      talle:[''],
+      usuario:[''],
+      _id:[''],
+    });
+  }
+  //terminar la carga de productos en order con formarray
 
   generateForm(){
     if(this.user){
@@ -74,8 +97,8 @@ export class OrderComponent implements OnInit {
   addCart(product:Productos){
     this.orderSvc.addCart(product)
   }
-  deleteItem(productId){
-    this.orderSvc.deleteCart(productId)
+  deleteItem(index,productId){
+    this.orderSvc.deleteCart(index,productId)
   }
   deleteAll(){
     this.orderSvc.deleteAllCart()
@@ -96,17 +119,17 @@ export class OrderComponent implements OnInit {
   }  */
 
   paid(){
-    this.orderSvc.modalMP(this.products).subscribe(
-      res=>{
-        var script = document.createElement("script");
-      script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-      script.type = "text/javascript";
-      script.dataset.preferenceId = res.preferenceID;
-      document.getElementById("page-content").innerHTML = "";
-      document.querySelector("#page-content").appendChild(script);
+    // this.orderSvc.modalMP(this.products).subscribe(
+      // res=>{
+        // var script = document.createElement("script");
+      // script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      // script.type = "text/javascript";
+      // script.dataset.preferenceId = res.preferenceID;
+      // document.getElementById("page-content").innerHTML = "";
+      // document.querySelector("#page-content").appendChild(script);
       // this.enviar();
-      },
-      err=>console.log(err)
-      )
+      // },
+      // err=>console.log(err)
+      // )
   }
 }

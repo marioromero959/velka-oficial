@@ -35,6 +35,5 @@ export class ProductsComponent implements OnInit {
       disableClose:false,
       data:product
     }); 
-    // this.orderSvc.addCart(product)
   }
 }
