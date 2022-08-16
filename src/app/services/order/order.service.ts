@@ -85,7 +85,6 @@ export class OrderService {
       product.cantidad = product.cantidad - 1 
     }else if(product.cantidad === 1){
       this.productos.removeAt(index)
-      console.log("productos despues",this.productos.value)
     }
      this.cart.next(this.productos.value)
   }

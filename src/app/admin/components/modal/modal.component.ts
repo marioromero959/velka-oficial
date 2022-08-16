@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modal',
@@ -15,12 +16,14 @@ export class ModalComponent implements OnInit {
   viewImg:any = '../../../../assets/no-img.png'
   categorias = [];
   id:string = ''
-
+  showSpinner:boolean = false
+  mode:'indeterminate'
 
   constructor( 
     private formBuilder: FormBuilder,
     private adminSvc:AdminService,
     public dialogRef: MatDialogRef<ModalComponent>,
+    private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any 
     ) {
       this.formularioProducto = this.formBuilder.group({
@@ -48,6 +51,13 @@ export class ModalComponent implements OnInit {
       this.cargarProducto(producto)
   }
 
+  openSnackBar(message:string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition:'center',
+      verticalPosition: 'top',
+      duration:2000
+    });
+  }
 
   cargarProducto(producto){
       this.formularioProducto.patchValue(producto)
@@ -72,18 +82,23 @@ export class ModalComponent implements OnInit {
       if(this.formularioProducto.invalid){
         this.formularioProducto.markAllAsTouched()
       }else{
+        this.showSpinner = true
         const { categoria, nombre, precio, descripcion } = this.formularioProducto.value
         const product = {id:this.id, nombre, categoria, precio, descripcion}
         this.adminSvc.editProduct(product).subscribe(
           (res:any)=>{
-            console.log(res);
             if(this.imagenProducto){
               this.adminSvc.uploadProductImg(this.imagenProducto,res._id)
               .then(img=>console.log(img))
               .catch(error=>console.error(error))
             }
+            this.showSpinner = false
+            this.openSnackBar("¡Producto editado correctamente!")
+            this.dialogRef.close()
           },
-          err =>console.log(err)
+          err =>{
+            this.openSnackBar(err)
+          }
         ) 
       }
     }

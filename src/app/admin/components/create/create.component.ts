@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AdminService } from '../../services/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/modalError/modal/modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create',
@@ -15,12 +16,13 @@ export class CreateComponent implements OnInit {
   formularioCategoria:FormGroup;
   imagenProducto:File;
   viewImg:any = '../../../../assets/no-img.png'
-
+  showSpinner:boolean = false
   categorias = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private adminSvc:AdminService,
+    private _snackBar: MatSnackBar,
     public dialog:MatDialog,
   ) { 
     this.formularioProducto = this.formBuilder.group({
@@ -54,13 +56,28 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  
+  openSnackBar(message:string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition:'center',
+      verticalPosition: 'top',
+      duration:2000
+    });
+  }
+
   crearCategoria(){
     if(this.formularioCategoria.get(['crear','nombre']).invalid){
       this.formularioCategoria.get(['crear']).markAllAsTouched();
     }else{
+      this.showSpinner = true
       this.adminSvc.addCategory(this.formularioCategoria.value.crear).subscribe(
-        res=>console.log(res),
+        res=>{
+          this.showSpinner = false
+          this.openSnackBar("¡Categoria creada correctamente!")
+          this.getAllcategories()
+        },
         err =>{
+          this.showSpinner = false
           this.dialog.open(ModalComponent,{
             disableClose:false,
             data:err.error.msg
@@ -73,11 +90,21 @@ export class CreateComponent implements OnInit {
     if(this.formularioCategoria.get(['editar']).invalid){
       this.formularioCategoria.get(['editar']).markAllAsTouched();
     }else{
+      this.showSpinner = true
       this.adminSvc.editCategory(this.formularioCategoria.value.editar).subscribe(
-        res=>console.log(res),
-        err =>console.log(err)
+        res=>{
+          this.showSpinner = false
+          this.openSnackBar("¡Categoria editada correctamente!")
+          this.getAllcategories()
+        },
+        err =>{
+          this.showSpinner = false
+          this.dialog.open(ModalComponent,{
+            disableClose:false,
+            data:err.error.msg
+        })}
       )
-      console.log(this.formularioCategoria.value.editar);
+      // console.log(this.formularioCategoria.value.editar);
     }
   }
 
@@ -85,9 +112,19 @@ export class CreateComponent implements OnInit {
     if(this.formularioCategoria.get(['eliminar']).invalid){
       this.formularioCategoria.get(['eliminar']).markAllAsTouched();
     }else{
+      this.showSpinner = true
       this.adminSvc.deleteCategory(this.formularioCategoria.value.eliminar).subscribe(
-        res=>console.log(res),
-        err =>console.log(err)
+        res=>{
+          this.showSpinner = false
+          this.openSnackBar("¡Categoria eliminada correctamente!")
+          this.getAllcategories()
+        },
+        err =>{
+          this.showSpinner = false
+          this.dialog.open(ModalComponent,{
+            disableClose:false,
+            data:err.error.msg
+        })}
         )
     }
   }
@@ -110,15 +147,25 @@ export class CreateComponent implements OnInit {
     if(this.formularioProducto.invalid){
       this.formularioProducto.markAllAsTouched()
     }else{
+      this.showSpinner = true
       const { categoria, nombre, precio, descripcion } = this.formularioProducto.value
       const product = {nombre, categoria, precio, descripcion}
       this.adminSvc.addProduct(product).subscribe(
         (res:any)=>{
+            this.showSpinner = false
+            this.openSnackBar("Producto creado correctamente!")
             this.adminSvc.uploadProductImg(this.imagenProducto,res._id)
-            .then(img=>console.log(img))
+            .then(img=>{
+              this.formularioProducto.reset()
+            })
             .catch(error=>console.error(error))
         },
-        err =>console.log(err)
+        err =>{
+          this.showSpinner = false
+          this.dialog.open(ModalComponent,{
+            disableClose:false,
+            data:err.error.msg
+        })}
       )
     }
   }

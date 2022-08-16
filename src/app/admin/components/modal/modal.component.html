@@ -1,5 +1,13 @@
 <div class="container">
-    <h1 mat-dialog-title>Editar producto</h1>
+    <div class="spinner">
+        <h1 mat-dialog-title>Editar producto</h1>
+        <mat-progress-spinner
+        diameter="40"
+        *ngIf="showSpinner"
+        color="primary"
+        mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
     <div mat-dialog-content>
         <div class="productos">
             <form [formGroup]="formularioProducto">

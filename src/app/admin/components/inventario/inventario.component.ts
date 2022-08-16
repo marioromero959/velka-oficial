@@ -33,7 +33,6 @@ export class InventarioComponent implements OnInit {
       disableClose:false,
       data:producto
     }); 
-    
   }
   borrarProducto(id,index){
     this.productos.splice(index,1)
