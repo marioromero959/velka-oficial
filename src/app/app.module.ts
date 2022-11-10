@@ -27,7 +27,7 @@ import { ModalComponent } from './modalError/modal/modal.component';
     LayoutModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [/* {
     provide: HTTP_INTERCEPTORS,

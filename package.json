@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@swimlane/ngx-charts": "^20.1.0",
     "@types/scriptjs": "^0.0.2",
     "rxjs": "~6.6.0",
     "scriptjs": "^2.5.9",

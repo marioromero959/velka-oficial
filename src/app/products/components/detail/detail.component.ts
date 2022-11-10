@@ -4,6 +4,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 import { ProductsService } from '../../services/products.service';
 import { Productos } from 'src/app/admin/interface/product';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-detail',
@@ -12,9 +13,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DetailComponent implements OnInit {
 
-  // product:Productos;
-  talles = ['S', 'M','L','XL']//TODO VER SELECT
-  selected = 'S'
+  index: number = 0;
 
   constructor(
         @Inject(MAT_DIALOG_DATA) 
@@ -23,21 +22,34 @@ export class DetailComponent implements OnInit {
         private productSvc:ProductsService,
         private orderSvc:OrderService,
         public dialogRef: MatDialogRef<DetailComponent>,
-  ) { }
+        private _snackBar: MatSnackBar)
+         { }
 
   ngOnInit(): void {
- /*       this.productSvc.getProductapi(this.producto._id).subscribe((res:Productos)=>{
-         this.product = res
-        console.log(res)
-      })  */ //Llama un producto a la api
-      this.product.talle = this.selected
   }
 
   changeTalle(e,product){
-    product.talle = e.value
+    product.talleSeleccionado = e.value
   }
 
   addCart(product:Productos){
-      this.orderSvc.addCart(product)
+      if(product.talleSeleccionado === undefined){
+        this.openSnackBar("Porfa, primero carga el talle",5000)
+      }else{
+        this.orderSvc.addCart(product)
+        this.openSnackBar("+1 Producto agregado al carrito",2000)
+      }   
+  }
+
+  changeImg(e,index){
+    this.index = index;
+  }
+
+  openSnackBar(message:string,duration) {
+    this._snackBar.open(message, '', {
+      horizontalPosition:'center',
+      verticalPosition: 'top',
+      duration:duration
+    });
   }
 }

@@ -31,9 +31,18 @@ export class InventarioComponent implements OnInit {
   editarProducto(producto){
     const dialogRef = this.dialog.open(ModalComponent,{
       disableClose:false,
-      data:producto
+      data:producto,
     }); 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.productSvc.getAllProductsapi()
+        .subscribe((productos:Productos[])=>{
+        this.productos = productos
+        })
+      }
+    })
   }
+
   borrarProducto(id,index){
     this.productos.splice(index,1)
     this.adminSvc.deleteProduct(id).subscribe(

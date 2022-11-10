@@ -47,7 +47,7 @@ export class ContactComponent implements OnInit {
       this._email.enviarMail(this.contacto.value).subscribe((res:any)=>{
         console.log(res)
       });
-      // this.contacto.reset();
+      this.contacto.reset();
       this.enviado = true;
     }else{
       this.contacto.markAllAsTouched();

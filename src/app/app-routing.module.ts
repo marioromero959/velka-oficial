@@ -42,6 +42,11 @@ const routes: Routes = [
       loadChildren: () => import('./order/order.module').then(m => m.OrderModule),
       data: { animation: 'animationOrder' }
     },
+    {
+      path: 'detail',
+      loadChildren: () => import('./detalle-pago/detalle-pago.module').then(m => m.DetallePagoModule),
+      data: { animation: 'animationOrder' }
+    },
   ]
   },
   {
@@ -53,6 +58,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes,{
     enableTracing:false,
+    scrollPositionRestoration:'enabled',
     preloadingStrategy:PreloadAllModules
   })],
   exports: [RouterModule]

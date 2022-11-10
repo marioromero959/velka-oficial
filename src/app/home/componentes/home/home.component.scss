@@ -1,6 +1,22 @@
+.descuento{
+  width: 100%;
+  height: 30px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p{
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-family: 'Bebas Neue';
+    margin: 0;
+    padding: 0;
+  }
+}
 .firstBanner{
   width: 100%;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 70px);
   background: url(../../../../assets/banner2.png) no-repeat fixed top ;
   background-size:cover;
 }
@@ -13,6 +29,7 @@ section{
   justify-content: space-evenly;
 }
 .card {
+  margin:5px;
   max-width: 350px;
   a{
     color: #000;
@@ -127,6 +144,14 @@ section{
     justify-content: space-evenly;
     img{
       width: 40px;
+    }
+  }
+  .descuento{
+    text-align: center;
+    height: 40px;
+    p{
+      font-family: 'Lato';
+      font-size: 13px;
     }
   }
 }

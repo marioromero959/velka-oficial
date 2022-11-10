@@ -13,7 +13,6 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PromoComponent implements OnInit, AfterViewInit{
 
-  // @Input('productos') products = [];
   products:Productos[] = [];
 
   constructor(
@@ -25,16 +24,18 @@ export class PromoComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.productSvc.getAllProductsapi().subscribe(res=>{
       this.products = res;
+      console.table(this.products);
+      
     })
   }
 
   ngAfterViewInit(){
-    Swiper.use([Navigation, Pagination,Autoplay]);
+    Swiper.use([Navigation, Pagination,Autoplay,]);
     const swiper = new Swiper('.swiper', {
-      loop: true,
       autoplay:{
         disableOnInteraction:false,
-        delay:2000,
+        delay:4000,
+        stopOnLastSlide:false,
       },
     });
   }

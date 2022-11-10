@@ -6,7 +6,8 @@ export interface Productos {
     precio:     number;
     categoria:  Categoria;
     disponible: boolean;
-    talle?:     string;
+    talles?:     [number];
+    talleSeleccionado?:number;
     img:        string;
     cantidad?:  number;
 }

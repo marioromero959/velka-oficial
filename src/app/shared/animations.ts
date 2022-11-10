@@ -37,7 +37,7 @@ import { animate, animateChild, group, query, state, style, transition, trigger 
           })
     ],{optional:true}),
     query(':enter', [
-      animate('600ms ease-in',style({opacity:1}))
+      animate('800ms ease-in',style({opacity:1}))
     ],{optional:true}),
   ])]) 
 //fade animation

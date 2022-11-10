@@ -5,13 +5,13 @@
         <div *ngIf="(products$ | async) as products" class="container">
             <p *ngIf="products.length === 0">Aún no hay productos en tu carrito</p>
               <mat-card class="card" *ngFor="let product of products;let i = index">
-                <img mat-card-image [src]="product.img" alt="product.descripcion" loading="lazy">
+                <img mat-card-image [src]="product.img[0]" alt="product.descripcion" loading="lazy">
                 <p>{{product.nombre}}</p>
                 <mat-card-content>
                   <p>Cantidad:{{product.cantidad}}</p>
                     <p>{{product.precio*product.cantidad | currency}}</p>
                     <p>{{product.descripcion}}</p>
-                    <p>{{product.talle}}</p>
+                    <p>Talle:{{product.talleSeleccionado}}</p>
                     <mat-card-actions>
                         <button mat-raised-button (click)="deleteItem(i,product)">Eliminar</button>
                         <button mat-raised-button color=primary (click)="addCart(product)">Agregar(+1)</button>

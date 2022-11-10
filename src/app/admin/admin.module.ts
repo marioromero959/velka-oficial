@@ -9,14 +9,18 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InventarioComponent } from './components/inventario/inventario.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ChartsComponent } from './components/charts/charts.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [NavComponent, CreateComponent, DashboardComponent, InventarioComponent, ModalComponent],
+  declarations: [NavComponent, CreateComponent, DashboardComponent, InventarioComponent, ModalComponent, ChartsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxChartsModule,
   ]
 })
 export class AdminModule { }

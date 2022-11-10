@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Productos } from 'src/app/admin/interface/product';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -44,7 +44,7 @@ export class OrderService {
       precio:0,
       categoria:'',
       disponible:true,
-      talle:0,
+      talleSeleccionado:0,
       img:'',
       cantidad:0,
     })
@@ -59,7 +59,7 @@ export class OrderService {
     let productoRepetido = this.productos.controls.filter(p=>p.get('_id').value == product._id)
     if(productoRepetido.length >= 1){
       //Si ese tipo de producto ya esta en el carrito, corroboro el talle
-      let talleRepetido = productoRepetido.filter(p=>p.get('talle').value == product.talle)
+      let talleRepetido = productoRepetido.filter(p=>p.get('talleSeleccionado').value == product.talleSeleccionado)
       if(talleRepetido.length>=1){
         talleRepetido[0].patchValue({cantidad:talleRepetido[0].value.cantidad+1})
       }else{
@@ -90,12 +90,13 @@ export class OrderService {
   }
   
   deleteAllCart(){
-    this.products.splice(0,this.products.length)
-    this.cart.next(this.products)
+    while (this.productos.length !== 0) {
+      this.productos.removeAt(0)
+    }
+    this.cart.next(this.productos.value)
   }
 
-  modalMP(productos){
-    return this.http.post<RtaMP>(`${environment.API}/api/order`,productos)
+  modalMP(dataCompra){
+    return this.http.post<RtaMP>(`${environment.API}/api/order`,dataCompra)
   }
-
 }

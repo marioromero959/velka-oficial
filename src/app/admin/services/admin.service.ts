@@ -46,20 +46,26 @@ export class AdminService {
   }
   
 
-  async uploadProductImg(archivo:File,id:string){
+  async uploadProductImg(archivos:File[],id:string,imagenesBorradas?:string[]){
     try {
       const url = `${environment.API}/api/uploads/productos/${id}`;
       const formData = new FormData();
-      formData.append('archivo',archivo)
+      archivos.forEach(archivo =>
+        formData.append('archivo', archivo)
+      );
+      if(imagenesBorradas){
+        imagenesBorradas.forEach(archivo =>
+          formData.append('archivo', archivo)
+          );
+      }
+
       const res = await fetch(url,{
         method:'PUT',
         body:formData
       })
       const data = await res.json()
-      console.log(data);
-
+      return data
     } catch (error) {
-        console.log(error);
         return error
     }
   }
@@ -69,17 +75,23 @@ export class AdminService {
     const headers = new HttpHeaders({
       'x-token':localStorage.getItem('token')
     })
-    return this.http.put(`${environment.API}/api/productos/${product.id}`,{nombre:product.nombre,precio:product.precio,descripcion:product.descripcion},{headers})
+    return this.http.put(`${environment.API}/api/productos/${product.id}`,{nombre:product.nombre,precio:product.precio,talles:product.talles,descripcion:product.descripcion},{headers})
 
   }
 
   deleteProduct(id){
-    console.log(id);
-    
     const headers = new HttpHeaders({
       'x-token':localStorage.getItem('token')
     })
     return this.http.delete(`${environment.API}/api/productos/${id}`,{headers})
 
   }
+
+  obtenerDatosCompra(){
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${environment.MP}`
+    })
+    return this.http.get(`https://api.mercadopago.com/v1/payments/search?sort=date_created&criteria=desc`,{headers})
+  }
+
 }

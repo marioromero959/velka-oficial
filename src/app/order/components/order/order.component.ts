@@ -12,6 +12,7 @@ import { MailService } from 'src/app/services/mail.service';
 })
 export class OrderComponent implements OnInit {
 
+  usuario
   disableButton:boolean = false;
   products$:Observable<Productos[]>;
   products:Productos[];
@@ -25,15 +26,18 @@ export class OrderComponent implements OnInit {
     this.products$ = this.orderSvc.cart$;
     this.products$.subscribe(products => {
       this.products = products;
-      // console.log("desde order c",this.products);
-      
     })
   }
 
    ngOnInit() {
-    let userInfo = localStorage.getItem('token');
 
-    (userInfo) ? this.user = true : this.user = false;
+    this.usuario = {
+      token:localStorage.getItem('token'),
+      currentUserEmail:localStorage.getItem('currentUserEmail'),
+      currentUserName:localStorage.getItem('currentUserName')
+    };
+
+    (this.usuario.token) ? this.user = true : this.user = false;
     
     this.dataClient = this.generateForm();
     this.productsForm = this.createProductsForm()
@@ -54,7 +58,7 @@ export class OrderComponent implements OnInit {
       img:[''],
       nombre:[''],
       precio:[''],
-      talle:[''],
+      talle:[],
       usuario:[''],
       _id:[''],
     });
@@ -64,6 +68,8 @@ export class OrderComponent implements OnInit {
   generateForm(){
     if(this.user){
       return this._formBuilder.group({
+        email: [this.usuario.currentUserEmail],
+        name: [this.usuario.currentUserName],
         direction: [''],
         envio: ['local'],
       });
@@ -110,26 +116,30 @@ export class OrderComponent implements OnInit {
     return total
   }
 
-/*   enviar(){
+enviar(){
     if(this.dataClient.valid){
       this._email.enviarMail(this.dataClient.value).subscribe((res:any)=>{
         console.log(res)
       });
     }
-  }  */
+  }  
 
   paid(){
-    // this.orderSvc.modalMP(this.products).subscribe(
-      // res=>{
-        // var script = document.createElement("script");
-      // script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-      // script.type = "text/javascript";
-      // script.dataset.preferenceId = res.preferenceID;
-      // document.getElementById("page-content").innerHTML = "";
-      // document.querySelector("#page-content").appendChild(script);
+    let dataCompra = {
+      productos:this.products,
+      dataClient:this.dataClient.value
+    }
+    this.orderSvc.modalMP(dataCompra).subscribe(
+      res=>{
+      var script = document.createElement("script");
+      script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.type = "text/javascript";
+      script.dataset.preferenceId = res.preferenceID;
+      document.getElementById("page-content").innerHTML = "";
+      document.querySelector("#page-content").appendChild(script);
       // this.enviar();
-      // },
-      // err=>console.log(err)
-      // )
+      },
+      err=>console.log(err)
+      )
   }
 }

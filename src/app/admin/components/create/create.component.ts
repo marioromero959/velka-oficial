@@ -14,10 +14,14 @@ export class CreateComponent implements OnInit {
 
   formularioProducto:FormGroup;
   formularioCategoria:FormGroup;
+
   imagenProducto:File;
+  imagenesProducto:File[] = [];
+  blobs = []
   viewImg:any = '../../../../assets/no-img.png'
   showSpinner:boolean = false
   categorias = [];
+  tallesProducto = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,8 +33,8 @@ export class CreateComponent implements OnInit {
       nombre: ['',Validators.required],
       categoria: ['',Validators.required],
       precio: ['',Validators.required],
-      img: ['',Validators.required],
-      descripcion: ['',Validators.required],
+      talles: ['',Validators.required],
+      descripcion: [''],
     });
     this.formularioCategoria = this.formBuilder.group({
       editar: this.formBuilder.group({
@@ -56,7 +60,6 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  
   openSnackBar(message:string) {
     this._snackBar.open(message, '', {
       horizontalPosition:'center',
@@ -104,7 +107,6 @@ export class CreateComponent implements OnInit {
             data:err.error.msg
         })}
       )
-      // console.log(this.formularioCategoria.value.editar);
     }
   }
 
@@ -130,35 +132,62 @@ export class CreateComponent implements OnInit {
   }
 
   //Productos
-  cambiarImg(e){
-    this.imagenProducto = e.target.files[0];
-    let reader = new FileReader();
-    reader.onload = (e)=>{
-      this.viewImg = e.target.result
+  cargarImg(e){
+    let imagenes = e.target.files;
+    for (const i in imagenes) {
+      let reader = new FileReader();
+      let url = reader.readAsDataURL(imagenes[i])
+      reader.onloadend = ()=>{
+        if(!this.blobs.includes(reader.result))
+        this.blobs.push({
+          id:i,
+          blob:reader.result
+        })
+      }
+      if(!this.imagenesProducto.map(img=>img.name).includes(imagenes[i].name))
+      this.imagenesProducto.push(imagenes[i])
     }
-    if(this.imagenProducto == undefined){
-      this.viewImg = '../../../../assets/no-img.png'
-    }else{
-      reader.readAsDataURL(this.imagenProducto);
-    }
+    this.imagenesProducto.pop()
+    this.imagenesProducto.pop()
   }
 
+  eliminarImg(id){
+    this.imagenesProducto.splice(id,1)
+    this.blobs.splice(id,1)
+  }
+
+
+agregarTalles(e){
+  let talle = Number(e.target.value)
+  this.tallesProducto.push(talle)
+  this.formularioProducto.get('talles').patchValue(this.tallesProducto)
+}
+eliminarTalles(talle){
+  let index = this.tallesProducto.indexOf(talle)
+  this.tallesProducto.splice(index,1)
+}
+
+
   crearProducto(){
-    if(this.formularioProducto.invalid){
+    if(this.formularioProducto.invalid || this.tallesProducto.length == 0){
       this.formularioProducto.markAllAsTouched()
     }else{
       this.showSpinner = true
-      const { categoria, nombre, precio, descripcion } = this.formularioProducto.value
-      const product = {nombre, categoria, precio, descripcion}
+      const { categoria, nombre, precio, talles, descripcion } = this.formularioProducto.value
+      const product = {nombre, categoria, precio, talles, descripcion}
       this.adminSvc.addProduct(product).subscribe(
         (res:any)=>{
             this.showSpinner = false
-            this.openSnackBar("Producto creado correctamente!")
-            this.adminSvc.uploadProductImg(this.imagenProducto,res._id)
-            .then(img=>{
-              this.formularioProducto.reset()
-            })
-            .catch(error=>console.error(error))
+            if(this.imagenesProducto.length > 8){
+              this.openSnackBar("Se pueden agregar solo hasta 8 imagenes por producto!")
+            }else{
+              this.adminSvc.uploadProductImg(this.imagenesProducto,res._id)
+              .then(img=>{
+                this.openSnackBar("Producto creado correctamente!")
+                this.formularioProducto.reset()
+              })
+              .catch(error=>console.error(error))
+            }
         },
         err =>{
           this.showSpinner = false
@@ -169,7 +198,6 @@ export class CreateComponent implements OnInit {
       )
     }
   }
-
 
 }
 

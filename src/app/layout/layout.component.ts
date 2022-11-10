@@ -80,6 +80,8 @@ public badge(){
   outSession(){
     if(this.session === 'Cerrar'){
       localStorage.removeItem('token')
+      localStorage.removeItem('currentUserEmail')
+      localStorage.removeItem('currentUserName')
       this.session = 'Iniciar'
     }
   }
