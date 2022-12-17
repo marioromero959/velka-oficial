@@ -16,8 +16,10 @@ export class IngresosComponent implements OnInit {
 
   ngOnInit(): void {
     this.productsSvc.getAllProductsapi().subscribe((res:Producto[])=>{
-      this.productos.push(res[res.length-1])
-      this.productos.push(res[res.length-2])
+      if(res.length > 1){
+        this.productos.push(res[res.length-1])
+        this.productos.push(res[res.length-2])
+      }
     })
   }
 //ver length para poner los ultimos
