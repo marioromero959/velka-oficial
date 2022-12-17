@@ -82,7 +82,7 @@ mode="indeterminate">
     </div>
     <div class="imagenes">
         <div class="boton-imagenes">
-            <input type="file" (change)="cargarImg($event)" accept=".png,.jpg,.jpeg" multiple="multiple">
+            <input #fileInput type="file" (change)="cargarImg($event)" accept=".png,.jpg,.jpeg" multiple="multiple">
             <button mat-raised-button>Agregar Imágenes</button>
         </div>
         <p>Cantidad de imagenes(max 8): {{blobs.length}}</p>

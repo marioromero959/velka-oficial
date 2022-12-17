@@ -32,10 +32,14 @@ export class ChartsComponent implements OnInit {
   obtenerDatosCompra(){
     this.adminSvc.obtenerDatosCompra().pipe
     (map((data:any) => data.results))
-    // ,filter(item => item.statement_descriptor == "MERCPAGO*VELKAHANDMADE"))
+    // filter(item => item == "MERCPAGO*VELKAHANDMADE")
     .subscribe((items:any) =>{
+      // console.log("items",items.map(i=>{
+      // return {'data':i.metadata,'info':i.metadata}
+      // }));
       this.soldProducts = items.filter(item => item.statement_descriptor === "MERCPAGO*VELKAHANDMADE")
                                .map(item =>item.additional_info.items).filter(element=>element !== undefined);
+      
       this.imprimirArr()
     })
   }
